@@ -95,6 +95,8 @@ def terminal():
             functions[user_input[0]](user_input[1])
         else:
             print("Invalid function name!")
+    else:
+        print("Invalid input!")
 
 if __name__ == "__main__":
     terminal()
