@@ -57,6 +57,24 @@ def devWorldDetails(worldID):
 def devWorldPlayers(worldID):
     pass
 
+# create a dictionary of functions
+functions = {
+    "playerInventory": playerInventory,
+    "playerVillagers": playerVillagers,
+    "playerCaughtCreatures": playerCaughtCreatures,
+    "playerDonatedCreatures": playerDonatedCreatures,
+    "playerWorldDetails": playerWorldDetails,
+    "devPlayerInventory": devPlayerInventory,
+    "devVillagers": devVillagers,
+    "devCreatures": devCreatures,
+    "devFish": devFish,
+    "devBugs": devBugs,
+    "devFossils": devFossils,
+    "devCrustaceans": devCrustaceans,
+    "devWorldDetails": devWorldDetails,
+    "devWorldPlayers": devWorldPlayers
+}
+
 
 # Terminal must take one or two arguments, the first decides which function is called, and the second is used if the function requires an argument
 def terminal():
@@ -65,20 +83,18 @@ def terminal():
     # Check if the user input is valid
     if len(user_input) == 1:
         # Check if the function exists
-        if user_input[0] in globals():
+        if user_input[0] in functions:
             # Call the function
-            globals()[user_input[0]]()
+            functions[user_input[0]]()
         else:
-            print("Function does not exist")
+            print("Invalid function name!")
     elif len(user_input) == 2:
         # Check if the function exists
-        if user_input[0] in globals():
+        if user_input[0] in functions:
             # Call the function
-            globals()[user_input[0]](user_input[1])
+            functions[user_input[0]](user_input[1])
         else:
-            print("Function does not exist")
-    else:
-        print("Invalid input")
+            print("Invalid function name!")
 
 if __name__ == "__main__":
     terminal()
