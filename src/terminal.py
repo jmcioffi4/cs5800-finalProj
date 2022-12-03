@@ -78,25 +78,34 @@ functions = {
 
 # Terminal must take one or two arguments, the first decides which function is called, and the second is used if the function requires an argument
 def terminal():
-    # Take input from user, split it into a list, and then assign it to a variable
-    user_input = input("Enter function name, and if neccesary, argument: ").split()
-    # Check if the user input is valid
-    if len(user_input) == 1:
-        # Check if the function exists
-        if user_input[0] in functions:
-            # Call the function
-            functions[user_input[0]]()
+    while True:
+        # Take input from user, split it into a list, and then assign it to a variable
+        user_input = input("Enter function name, and if neccesary, argument: ").split()
+        # Check if the user input is valid
+        if len(user_input) == 1:
+            # Check if the function exists
+            if user_input[0] in functions:
+                # Call the function
+                functions[user_input[0]]()
+            elif user_input[0] == "exit":
+                break
+            else:
+                print("Invalid input")
+
+        elif len(user_input) == 2:
+            # Check if the function exists
+            if user_input[0] in functions:
+                # Call the function
+                functions[user_input[0]](user_input[1])
+            elif user_input[0] == "exit":
+                break
+            else:
+                print("Invalid input")
         else:
-            print("Invalid function name!")
-    elif len(user_input) == 2:
-        # Check if the function exists
-        if user_input[0] in functions:
-            # Call the function
-            functions[user_input[0]](user_input[1])
-        else:
-            print("Invalid function name!")
-    else:
-        print("Invalid input!")
+            print("Invalid input")
+
 
 if __name__ == "__main__":
+    # Repeat the terminal until the user enters "exit"
     terminal()
+
