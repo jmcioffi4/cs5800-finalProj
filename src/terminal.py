@@ -133,7 +133,11 @@ def devFossils():
     """The Game Developer must be able to see a full list of fossils
     Arguments:
         None"""
-    pass
+    results = database.executeSQL(f'''
+                                    SELECT * 
+                                    FROM fossil;
+                                    ''')
+    makeDBandPrint(results, columnsList=['creatureID','isExamined'])
 
 # The Game Developer must be able to see a full list of crustaceans
 def devCrustaceans():
