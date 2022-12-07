@@ -1,5 +1,7 @@
 from dbConnector import dbConnector
 import pandas
+from sys import exit
+from os import system
 
 # # Need a empty function for each query
 # Functional Requirements:
@@ -13,8 +15,11 @@ def playerInventory(playerID):
     """The Game Player must be able to see their player’s inventory
     Arguments:
         playerID: The ID of the player"""
-    print(pandas.DataFrame(database.executeSQL(f"SELECT * FROM IsHolding WHERE playerID = {playerID}")))
-
+    if playerID.isdigit():
+        print(pandas.DataFrame(database.executeSQL(f"SELECT * FROM IsHolding WHERE playerID = {playerID}")))
+    else:
+        usageMessage(f"[{playerID}] was not a valid ID")
+    
 # The Game Player must be able to see a list of villagers that live in the player’s world
 def playerVillagers(playerID):
     """The Game Player must be able to see a list of villagers that live in the player’s world
@@ -126,6 +131,13 @@ def functionHelp(function):
     else:
         print("Invalid input")
 
+def usageMessage(message):
+    system('clear') # clear the screen for the user
+    print(f"----------------"
+           f"\n>> USAGE MESSGE << "
+           f"\n{message}"
+           f"\n----------------")
+
 
 
 # create a dictionary of functions
@@ -152,50 +164,37 @@ functions = {
 # Terminal must take one or two arguments, the first decides which function is called, and the second is used if the function requires an argument
 def terminal():
     while True:
-        # Take input from user, split it into a list, and then assign it to a variable
+        # Show the user help message
         print("------------------------------------------------"
             "\n>> USAGE MESSAGE <<"
             "\n* Use keyword 'exit' or ^C to exit the program"
             "\n* Enter a function, or type 'help' for a list of functions"
             "\n* Input must be in the format '<functionName> <argument>'"
             "\n------------------------------------------------\n")
-        user_input = input("input: ").split()
-        # Check if the user input is valid
-        if len(user_input) == 1:
-            # Check if the function exists
-            if user_input[0] in functions:
-                # check if the function requires an argument
+
+        # Take input from user, split it into a list, and then assign it to a variable
+        user_input = input("INPUT: ").split()
+        if user_input[0] in functions:
+            if (len(user_input)==1):
+                # Check if there's an argument needed
                 if functions[user_input[0]].__code__.co_argcount == 1:
-                    print("----------------"
-                        "\n--!!Function requires an argument!!--"
-                        "\n----------------\n")
+                    usageMessage("!!Function requires an argument!!")
                 else:
                     functions[user_input[0]]()
-            elif user_input[0] == "exit":
-                break
-            else:
-                print("----------------"
-                    "\n--!!Invalid input!!--"
-                    "\n----------------\n")
-
-        elif len(user_input) == 2:
-            # Check if the function exists
-            if user_input[0] in functions:
-                # Call the function
+            if (len(user_input) == 2):
+                 # Call the function
                 functions[user_input[0]](user_input[1])
-            elif user_input[0] == "exit":
-                print("\n!!GoodBye!!")
-                break
-            else:
-                print("Invalid input")
+        elif user_input[0] == "exit":
+                usageMessage("!!GoodBye!!")
+                exit(0)
         else:
-            print("Invalid input")
+                usageMessage("!!Invalid input!!")
 
 
 if __name__ == "__main__":
-    # Repeat the terminal until the user enters "exit"
+    # Repeat the terminal until the user enters "exit" or uses keyboard interrupt
     try:
         terminal()
     except KeyboardInterrupt:
-        print("\n!!GoodBye!!")
+        usageMessage("!!GoodBye!!")
 
