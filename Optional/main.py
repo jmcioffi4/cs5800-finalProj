@@ -6,20 +6,31 @@ def showDevView(database, viewDB):
     developerMenuInput = menu.showDeveloperViewMenu()
     if developerMenuInput == '1':
         # call to update a table
-        pass
+        tableToUpdate = input("Which table would you like to update? : ")
+        attribute_name = input("Which attribute did you want to update? : ")
+        new_value = input("What do you want to change the attribtue_value to? : ")
+        old_value = input("What was the old or current value of attribute_value? : ")
+        database.UPDATE_SQL(tableToUpdate, attribute_name, new_value, old_value)
     elif developerMenuInput == '2':
         # call to delete a table
-        pass
+        tableToDelete = input("Which table did you want to delete? : ")
+        attribute_name = input("which attribute did you want to delete? : ")
+        value = input("What is the value of the attribute to delete? : ")
+        database.DELETE_SQL(tableToDelete, attribute_name, value)
+
     elif developerMenuInput == '3':
         # call to insert into a table
-        pass
+        table = input("What table did you want to insert into? : ")
+        value = input("what value (or values) did you want to insert into that table? : ")
+        database.INSERT_SQL(table, value)
+
     elif developerMenuInput == '4':
         # call viewSQLDB.py with viewMode = "developerView"
         viewDB.viewDB("developerView")
         return # if user backs to main menu, restart with main menu
     elif developerMenuInput == '5':
         # go back a menu, show the main
-        pass
+        return
 
 if __name__ == "__main__":
     # Create Database Connector Object

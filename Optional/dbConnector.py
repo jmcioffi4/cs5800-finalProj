@@ -25,7 +25,7 @@ class dbConnector():
         try:
             sql = f"INSERT INTO {table} {values};"
             self.mycursor.execute(sql)
-            self.mydb.comit()
+            self.mydb.commit()
         except mysql.connector.Error as err:
             print("Something went wrong: {}".format(err))
 
@@ -37,7 +37,7 @@ class dbConnector():
             else:
                 sql = f"DELETE FROM {table} WHERE {attribute_name} = '{value}';"
             self.mycursor.execute(sql)
-            self.mydb.comit()
+            self.mydb.commit()
         except mysql.connector.Error as err:
             print("Something went wrong: {}".format(err))
 
@@ -49,7 +49,7 @@ class dbConnector():
             else:
                 sql = f"UPDATE {table} SET {attribute_name} = '{new_value}' WHERE {attribute_name} = '{old_value}';"
             self.mycursor.execute(sql)
-            self.mydb.comit()
+            self.mydb.commit()
 
         except mysql.connector.Error as err:
             print("Something went wrong: {}".format(err))
