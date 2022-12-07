@@ -12,7 +12,7 @@
     *   Line 9 should be the only thing you need to change if you are like most users.
 
 ## The Entry Point to the Program
-*   The entry point to the program is `terminal.py` located in `src/`
+*   The entry point to the program is `terminal.py` located in `Optional/`
 
 ## Running `terminal.py`
 *   `python3` is probably how you use `python` on your command line, if this is not the case, enter in your computer's python command to run `terminal.py`

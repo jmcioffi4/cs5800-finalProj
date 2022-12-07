@@ -309,11 +309,3 @@ def terminal():
                 usageMessage("Invalid Input")
                 continue;
 
-
-if __name__ == "__main__":
-    # Repeat the terminal until the user enters "exit" or uses keyboard interrupt
-    try:
-        terminal()
-    except KeyboardInterrupt:
-        usageMessage("!!GoodBye!!")
-
