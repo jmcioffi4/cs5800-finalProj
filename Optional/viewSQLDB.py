@@ -258,7 +258,7 @@ functions = {
 
 
 # Terminal must take one or two arguments, the first decides which function is called, and the second is used if the function requires an argument
-def terminal():
+def viewDB():
     while True:
         # Show the user help message
         print('''\n------------------------------------------------"

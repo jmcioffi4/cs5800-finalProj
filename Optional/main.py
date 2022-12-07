@@ -1,11 +1,13 @@
-from terminal import terminal, usageMessage
+from viewSQLDB import viewDB, usageMessage
 from menu import menu
 
-if __name__ == "__main__":
-    # TODO: Implement the menu here
+if __name__ == "__main__":    
+    # TODO: Implement the menu
     
-    # Repeat the terminal until the user enters "exit" or uses keyboard interrupt
+    # TODO : Update this so it only runs when the menu option is selected
     try:
-        terminal()
+        # show the user the 
+        # TODO: Add more options (with 'exit') so user can go back to main menu in viewDB()
+        viewDB()
     except KeyboardInterrupt:
         usageMessage("!!GoodBye!!")
