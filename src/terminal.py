@@ -84,7 +84,17 @@ def playerWorldDetails(playerID):
     """The Game Player must be able to see details of their world
     Arguments:
         playerID: The ID of the player"""
-    pass
+    if playerID.isdigit():
+        results = database.executeSQL(f'''
+                                        SELECT world.* 
+                                        FROM world, livesOn 
+                                        WHERE livesOn.playerId = {playerID}
+                                        AND livesOn.worldId = world.worldId;
+                                        ''')
+        df = DataFrame(results, columns=['worldID', 'name', 'color', 'rating', 'fruit', 'season', 'weather', 'timeOfDay'])
+        print(tabulate(df, headers='keys', tablefmt='psql'))
+    else:
+        usageMessage(f"[{playerID}] was not a valid ID for [playerDonatedCreatures]") 
 
 # The Game Developer must be able to see a list of any player’s inventory
 def devPlayerInventory(playerID):
