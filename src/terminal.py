@@ -1,6 +1,7 @@
 from dbConnector import dbConnector
 from sys import exit
 from pandas import DataFrame
+from tabulate import tabulate
 
 # # Need a empty function for each query
 # Functional Requirements:
@@ -16,16 +17,25 @@ def playerInventory(playerID):
         playerID: The ID of the player"""
     if playerID.isdigit():
         results = database.executeSQL(f"SELECT * FROM IsHolding WHERE playerID = {playerID}")
-        print(DataFrame(results, columns = ['playerID', 'itemID']))
+        df = DataFrame(results, columns = ['playerID', 'itemID'])
+        print(tabulate(df, headers='keys', tablefmt='psql'))
     else:
         usageMessage(f"[{playerID}] was not a valid ID for [playerInventory]")
     
 # The Game Player must be able to see a list of villagers that live in the player’s world
-def playerVillagers(playerID):
-    """The Game Player must be able to see a list of villagers that live in the player’s world
+def playerVillagers(worldID):
+    """The Game Player must be able to see a list of villagers that live on the specified worldID
     Arguments:
         playerID: The ID of the player"""
-    pass
+    if worldID.isdigit():
+        results = database.executeSQL(f'''SELECT *
+                                        FROM Villager v
+                                        JOIN hasVillager h ON h.NPCID = v.NPCID
+                                        WHERE h.worldID = {worldID}''')
+        df = DataFrame(results, columns = ['NPCID', 'Name', 'Personality', 'Gender', 'Birthday', 'Species', 'WorldID', 'NPCID'])
+        print(tabulate(df, headers='keys', tablefmt='psql'))
+    else:
+        usageMessage(f"[{worldID}] was not a valid ID for [playerVillagers]")
 
 # The Game Player must be able to see a list of creatures that they have caught
 def playerCaughtCreatures(playerID):
@@ -174,7 +184,11 @@ def terminal():
 
         # Take input from user, split it into a list, and then assign it to a variable
         user_input = input("INPUT: ").split()
-        print("") # print a line for space
+        
+        # print a line for space
+        print("") 
+        
+        # check the args
         if user_input[0] in functions:
             if (len(user_input)==1):
                 # Check if there's an argument needed
@@ -185,9 +199,11 @@ def terminal():
             if (len(user_input) == 2):
                  # Call the function
                 functions[user_input[0]](user_input[1])
+        
         elif user_input[0] == "exit":
                 usageMessage("!!GoodBye!!")
                 exit(0)
+        
         else:
                 usageMessage("!!Invalid input!!")
 
