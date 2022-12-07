@@ -111,7 +111,11 @@ def devFish():
     """The Game Developer must be able to see a full list of fish
     Arguments:
         None"""
-    pass
+    results = database.executeSQL(f'''
+                                    SELECT * 
+                                    FROM fish;
+                                    ''')
+    makeDBandPrint(results, columnsList=['creatureID','size','shadowSize','difficulty','spawnPoint'])
 
 # The Game Developer must be able to see a full list of bugs
 def devBugs():
