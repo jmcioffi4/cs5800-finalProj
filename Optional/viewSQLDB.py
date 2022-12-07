@@ -238,30 +238,7 @@ def makeDBandPrint(results, columnsList):
     df = DataFrame(results, columns=columnsList)
     print(tabulate(df, headers='keys', tablefmt='psql'))
 
-# create a dictionary of functions
-# allFunctions = {
-#     "playerInventory": playerInventory,
-#     "playerVillagers": playerVillagers,
-#     "playerCaughtCreatures": playerCaughtCreatures,
-#     "playerDonatedCreatures": playerDonatedCreatures,
-#     "playerWorldDetails": playerWorldDetails,
-#     "playerListOfPlayers" : playerListOfPlayers,
-#     "devPlayerInventory": devPlayerInventory,
-#     "devVillagers": devVillagers,
-#     "devCreatures": devCreatures,
-#     "devFish": devFish,
-#     "devBugs": devBugs,
-#     "devFossils": devFossils,
-#     "devCrustaceans": devCrustaceans,
-#     "devWorldDetails": devWorldDetails,
-#     "devFullPlayerList" : devFullPlayerList,
-#     "devWorldPlayers": devWorldPlayers,
-#     "usageMessage" : usageMessage,
-#     "makeDBandPrint" : makeDBandPrint,
-#     "help": help,
-#     "functionHelp": functionHelp,
-# }
-
+# Dictionary of all functions based on viewMode
 playerViewFunctions = {
     "playerInventory": playerInventory,
     "playerVillagers": playerVillagers,
