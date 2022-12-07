@@ -3,6 +3,11 @@
 ## Before Running the Program
 *   The user of the program must open MySQL Workbench and run the `create.sql` and then the `insert.sql` files in order for the program to work.
     *   These are located in the `SQL` directory
+* The user must have the following packages installed:
+    *   `tabular` via `pip3 install tabular`
+    *   `pandas` via `pip3 install pandas`
+    *   `mysql` via `pip3 install mysql`
+    *   **NOTE** Please use your computer's appropriate version of `pip` to insure installation goes correctly.
 
 ## The Entry Point to the Program
 *   The entry point to the program is `terminal.py` located in `src/`
