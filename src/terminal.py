@@ -22,7 +22,6 @@ def playerInventory(playerID):
                                     ''')
     makeDBandPrint(results, columnsList=['playerID', 'itemID'])
         
-    
 # The Game Player must be able to see a list of villagers that live in the player’s world
 def playerVillagers(worldID):
     """The Game Player must be able to see a list of villagers that live on the specified worldID
@@ -101,7 +100,11 @@ def devCreatures():
     """The Game Developer must be able to see a full list of creatures
     Arguments:
         None"""
-    pass
+    results = database.executeSQL(f'''
+                                    SELECT * 
+                                    FROM creature;
+                                    ''')
+    makeDBandPrint(results, columnsList=['creatureID','name','isDonated','rarity','timeOfDay','season'])
 
 # The Game Developer must be able to see a full list of fish
 def devFish():
