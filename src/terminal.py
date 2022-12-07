@@ -153,12 +153,12 @@ functions = {
 def terminal():
     while True:
         # Take input from user, split it into a list, and then assign it to a variable
-        print("----------------"
-            "\n>>USAGE MESSAGE<<"
+        print("------------------------------------------------"
+            "\n>> USAGE MESSAGE <<"
             "\n* Use keyword 'exit' or ^C to exit the program"
             "\n* Enter a function, or type 'help' for a list of functions"
             "\n* Input must be in the format '<functionName> <argument>'"
-            "\n----------------\n")
+            "\n------------------------------------------------\n")
         user_input = input("input: ").split()
         # Check if the user input is valid
         if len(user_input) == 1:
