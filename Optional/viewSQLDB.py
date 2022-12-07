@@ -76,12 +76,19 @@ def playerWorldDetails(playerID):
                                     ''')
     makeDBandPrint(results, columnsList=['worldID', 'name', 'color', 'rating', 'fruit', 'season', 'weather', 'timeOfDay'])
 
-# TODO: The Game Player must be able to get a list of players that live on their world
+# The Game Player must be able to get a list of players that live on their world
 def playerListOfPlayers(playerID):
     """The Game Player must be able to get a list of players that live on their world
     Arguemnts:
         playerID: The ID of the player"""
-    pass
+    results = database.executeSQL(f'''
+                                    SELECT playerID
+                                    FROM livesOn
+                                    WHERE livesOn.worldId = (SELECT worldId 
+                                                            FROM livesOn 
+                                                            WHERE playerId = {playerID}) 
+                                    ''')
+    makeDBandPrint(results, columnsList=['playerID'])
 
 # The Game Developer must be able to see a list of any player’s inventory
 def devPlayerInventory(playerID):
@@ -231,8 +238,6 @@ def makeDBandPrint(results, columnsList):
     df = DataFrame(results, columns=columnsList)
     print(tabulate(df, headers='keys', tablefmt='psql'))
 
-
-
 # create a dictionary of functions
 functions = {
     "playerInventory": playerInventory,
@@ -240,6 +245,7 @@ functions = {
     "playerCaughtCreatures": playerCaughtCreatures,
     "playerDonatedCreatures": playerDonatedCreatures,
     "playerWorldDetails": playerWorldDetails,
+    "playerListOfPlayers" : playerListOfPlayers,
     "devPlayerInventory": devPlayerInventory,
     "devVillagers": devVillagers,
     "devCreatures": devCreatures,
@@ -256,13 +262,42 @@ functions = {
     "functionHelp": functionHelp,
 }
 
+# playerViewFunctions = {
+#     "playerInventory": playerInventory,
+#     "playerVillagers": playerVillagers,
+#     "playerCaughtCreatures": playerCaughtCreatures,
+#     "playerDonatedCreatures": playerDonatedCreatures,
+#     "playerWorldDetails": playerWorldDetails,
+# }
+
+# developerViewFunctions = {
+#     "devPlayerInventory": devPlayerInventory,
+#     "devVillagers": devVillagers,
+#     "devCreatures": devCreatures,
+#     "devFish": devFish,
+#     "devBugs": devBugs,
+#     "devFossils": devFossils,
+#     "devCrustaceans": devCrustaceans,
+#     "devWorldDetails": devWorldDetails,
+#     "devFullPlayerList" : devFullPlayerList,
+#     "devWorldPlayers": devWorldPlayers,
+#     "usageMessage" : usageMessage,
+#     "makeDBandPrint" : makeDBandPrint,
+# }
+
+# functions = {
+#     "playerView" : playerViewFunctions,
+#     "developerView" : developerViewFunctions,
+#     "help": help,
+#     "functionHelp": functionHelp,
+# }
 
 # viewDB must take one or two arguments, the first decides which function is called, and the second is used if the function requires an argument
 def viewDB():
     while True:
         # Show the user help message
         print('''\n------------------------------------------------"
-            \n>> USAGE MESSAGE <<
+            \n>> USAGE MESSAGE (VIEWING DATABASE) <<
             \n* Use keyword 'exit' or ^C to exit the program
             \n* Enter a function, or type 'help' for a list of functions
             \n* Input must be in the format '<functionName> <argument>'
@@ -276,6 +311,12 @@ def viewDB():
         
         # check the args
         try:
+            # if user_input[0] == "playerView":
+            #     # show playerView dictionary functions
+            #     pass
+            # if user_input[0] == "developerView":
+            #     # show developerView dictionary functions
+            #     pass
             if user_input[0] in functions:
                 if (len(user_input)==1):
                     # Check if there's an argument needed
@@ -308,4 +349,3 @@ def viewDB():
         except IndexError:
                 usageMessage("Invalid Input")
                 continue;
-
