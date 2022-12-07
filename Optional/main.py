@@ -1,10 +1,11 @@
-from viewSQLDB import viewDB, usageMessage
+from viewSQLDB import viewSQLDB
 import menu
+from dbConnector import dbConnector
 
-def showDevView():
+def showDevView(database, viewDB):
     developerMenuInput = menu.showDeveloperViewMenu()
     if developerMenuInput == '1':
-        # call to modify a table
+        # call to update a table
         pass
     elif developerMenuInput == '2':
         # call to delete a table
@@ -14,13 +15,17 @@ def showDevView():
         pass
     elif developerMenuInput == '4':
         # call viewSQLDB.py with viewMode = "developerView"
-        viewDB("developerView")
+        viewDB.viewDB("developerView")
         return # if user backs to main menu, restart with main menu
     elif developerMenuInput == '5':
         # go back a menu, show the main
         pass
 
-if __name__ == "__main__":    
+if __name__ == "__main__":
+    # Create Database Connector Object
+    database = dbConnector()
+    viewDB = viewSQLDB(database)
+
     while (True):
         try:
             # show the user the menu
@@ -31,12 +36,12 @@ if __name__ == "__main__":
                 playerMenuInput = menu.showPlayerViewMenu()
                 if playerMenuInput == '1':
                     # call viewSQLDB.py with viewMode = "playerView"
-                    viewDB("playerView")
+                    viewDB.viewDB("playerView")
                     continue # if user backs to main menu, restart with main menu
                 elif playerMenuInput == '2':
-                    usageMessage(" Returning to main menu ")
+                    viewDB.usageMessage(" Returning to main menu ")
                 else:
-                    usageMessage("Invalid Menu Option, please try again")
+                    viewDB.usageMessage("Invalid Menu Option, please try again")
                     continue
            
             # Developer Mode Selected
@@ -45,23 +50,23 @@ if __name__ == "__main__":
                 while (True):
                     devPassword = input("Please Enter Password: ")
                     if devPassword == 'password':
-                        showDevView()
+                        showDevView(database, viewDB)
                         break
                     elif devPassword == 'X':
                         break
                     else:
-                        usageMessage("Oops thats not a valid password. Try again \nOR type 'X' to go back to the main menu")
+                        viewDB.usageMessage("Oops thats not a valid password. Try again \nOR type 'X' to go back to the main menu")
 
             # Exit Program Selected
             elif mainMenuInput == '3':
                 # User wants to exit program
-                usageMessage("!! Goodbye !!")
+                viewDB.usageMessage("!! Goodbye !!")
                 exit(0)
             
             else:
-                usageMessage("Invalid Menu Option, please try again")
+                viewDB.usageMessage("Invalid Menu Option, please try again")
                 continue
 
         except KeyboardInterrupt:
-            usageMessage("!!GoodBye!!")
+            viewDB.usageMessage("!!GoodBye!!")
             exit(0)

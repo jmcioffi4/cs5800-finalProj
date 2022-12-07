@@ -1,5 +1,3 @@
-from viewSQLDB import usageMessage
-
 def menu():
     return showMainMenu()
 
@@ -23,7 +21,7 @@ def showPlayerViewMenu() -> int:
 
 def showDeveloperViewMenu() -> int:
     print(f'''
-        1. Modify a table
+        1. Update a table
         2. Delete a table
         3. Insert into a table
         4. View specifics of the databse

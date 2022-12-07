@@ -2,7 +2,6 @@ import mysql.connector
 
 class dbConnector():
     def __init__(self):
-
         self.mydb = mysql.connector.connect(
             host="localhost",
             user="root",
