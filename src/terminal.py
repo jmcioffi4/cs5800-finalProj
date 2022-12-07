@@ -28,11 +28,11 @@ def playerVillagers(worldID):
     Arguments:
         playerID: The ID of the player"""
     if worldID.isdigit():
-        results = database.executeSQL(f'''SELECT *
+        results = database.executeSQL(f'''SELECT v.*
                                         FROM Villager v
                                         JOIN hasVillager h ON h.NPCID = v.NPCID
                                         WHERE h.worldID = {worldID}''')
-        df = DataFrame(results, columns = ['NPCID', 'Name', 'Personality', 'Gender', 'Birthday', 'Species', 'WorldID', 'NPCID'])
+        df = DataFrame(results, columns = ['NPCID', 'Name', 'Personality', 'Gender', 'Birthday', 'Species'])
         print(tabulate(df, headers='keys', tablefmt='psql'))
     else:
         usageMessage(f"[{worldID}] was not a valid ID for [playerVillagers]")
