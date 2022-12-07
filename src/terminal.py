@@ -122,7 +122,11 @@ def devBugs():
     """The Game Developer must be able to see a full list of bugs
     Arguments:
         None"""
-    pass
+    results = database.executeSQL(f'''
+                                    SELECT * 
+                                    FROM bug;
+                                    ''')
+    makeDBandPrint(results, columnsList=['creatureID','speed','spawnPoint'])
 
 # The Game Developer must be able to see a full list of fossils
 def devFossils():
