@@ -14,3 +14,4 @@
     *   type `help` to see a list of available inputs.
 *   a valid `USAGE MESSAGE` will pop up with relevant information if an error occurs
     *   this will clear the user's screen to ensure a clean UI environment
+*   *PLEASE NOTE* The program is case sensitive. Please check your spelling and capitalization appropriately.
