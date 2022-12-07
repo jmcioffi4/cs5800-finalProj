@@ -16,7 +16,11 @@ def playerInventory(playerID):
     Arguments:
         playerID: The ID of the player"""
     if playerID.isdigit():
-        results = database.executeSQL(f"SELECT * FROM IsHolding WHERE playerID = {playerID}")
+        results = database.executeSQL(f'''
+                                        SELECT * 
+                                        FROM IsHolding 
+                                        WHERE playerID = {playerID}
+                                        ''')
         df = DataFrame(results, columns = ['playerID', 'itemID'])
         print(tabulate(df, headers='keys', tablefmt='psql'))
     else:
@@ -28,10 +32,12 @@ def playerVillagers(worldID):
     Arguments:
         playerID: The ID of the player"""
     if worldID.isdigit():
-        results = database.executeSQL(f'''SELECT v.*
+        results = database.executeSQL(f'''
+                                        SELECT v.*
                                         FROM Villager v
                                         JOIN hasVillager h ON h.NPCID = v.NPCID
-                                        WHERE h.worldID = {worldID}''')
+                                        WHERE h.worldID = {worldID}
+                                        ''')
         df = DataFrame(results, columns = ['NPCID', 'Name', 'Personality', 'Gender', 'Birthday', 'Species'])
         print(tabulate(df, headers='keys', tablefmt='psql'))
     else:
@@ -43,10 +49,12 @@ def playerCaughtCreatures(playerID):
     Arguments:
         playerID: The ID of the player"""
     if playerID.isdigit:
-        results = database.executeSQL(f'''SELECT creature.* 
+        results = database.executeSQL(f'''
+                                        SELECT creature.* 
                                         FROM hasCaught, creature 
                                         WHERE hasCaught.playerId = {playerID}
-                                        AND hasCaught.creatureID = creature.creatureID; ''')
+                                        AND hasCaught.creatureID = creature.creatureID; 
+                                        ''')
         df = DataFrame(results, columns = ['CreatureID', 'Name', 'isDonated', 'rarity', 'timeOfDay', 'season'])
         print(tabulate(df, headers='keys', tablefmt='psql'))
     else:
@@ -57,7 +65,19 @@ def playerDonatedCreatures(playerID):
     """The Game Player must be able to see a list of creatures that have been donated to their world
     Arguments:
         playerID: The ID of the player"""
-    pass    
+    if playerID.isdigit():
+        results = database.executeSQL(f'''
+                                    SELECT creature.* 
+                                    FROM creature, player, hasDonated, livesOn 
+                                    WHERE player.playerID = {playerID}
+                                    AND player.playerID = livesOn.playerID 
+                                    AND livesOn.WorldID = hasDonated.WorldId 
+                                    AND creature.CreatureID = HasDonated.creatureId; 
+                                        ''')
+        df = DataFrame(results, columns=['creatureID', 'name', 'isDonated', 'rarity', 'timeOfDay', 'season'])
+        print(tabulate(df, headers='keys', tablefmt='psql'))
+    else:
+        usageMessage(f"[{playerID}] was not a valid ID for [playerDonatedCreatures]")    
 
 # The Game Player must be able to see details of their world
 def playerWorldDetails(playerID):
@@ -151,10 +171,10 @@ def functionHelp(function):
 
 def usageMessage(message):
     # system('clear') # clear the screen for the user
-    print(f"\n----------------"
-           f"\n>> USAGE MESSGE << "
-           f"\n{message}"
-           f"\n----------------")
+    print(f'''\n----------------
+           \n>> USAGE MESSGE << 
+           \n{message}
+           \n----------------''')
 
 
 
@@ -183,12 +203,12 @@ functions = {
 def terminal():
     while True:
         # Show the user help message
-        print("\n------------------------------------------------"
-            "\n>> USAGE MESSAGE <<"
-            "\n* Use keyword 'exit' or ^C to exit the program"
-            "\n* Enter a function, or type 'help' for a list of functions"
-            "\n* Input must be in the format '<functionName> <argument>'"
-            "\n------------------------------------------------\n")
+        print('''\n------------------------------------------------"
+            \n>> USAGE MESSAGE <<
+            \n* Use keyword 'exit' or ^C to exit the program
+            \n* Enter a function, or type 'help' for a list of functions
+            \n* Input must be in the format '<functionName> <argument>'
+            \n------------------------------------------------\n''')
 
         # Take input from user, split it into a list, and then assign it to a variable
         user_input = input("INPUT: ").split()
