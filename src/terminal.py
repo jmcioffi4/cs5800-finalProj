@@ -1,12 +1,19 @@
+from dbConnector import dbConnector
+import pandas
+
 # # Need a empty function for each query
 # Functional Requirements:
+
+# Global Variables
+global database 
+database = dbConnector()
 
 # The Game Player must be able to see their player’s inventory
 def playerInventory(playerID):
     """The Game Player must be able to see their player’s inventory
     Arguments:
         playerID: The ID of the player"""
-    pass
+    print(pandas.DataFrame(database.executeSQL(f"SELECT * FROM IsHolding WHERE playerID = {playerID}")))
 
 # The Game Player must be able to see a list of villagers that live in the player’s world
 def playerVillagers(playerID):
@@ -146,8 +153,12 @@ functions = {
 def terminal():
     while True:
         # Take input from user, split it into a list, and then assign it to a variable
-        print("Enter a function, or type 'help' for a list of functions")
-        print("Input must be in the format 'functionName argument'")
+        print("----------------"
+            "\n>>USAGE MESSAGE<<"
+            "\n* Use keyword 'exit' or ^C to exit the program"
+            "\n* Enter a function, or type 'help' for a list of functions"
+            "\n* Input must be in the format '<functionName> <argument>'"
+            "\n----------------\n")
         user_input = input("input: ").split()
         # Check if the user input is valid
         if len(user_input) == 1:
@@ -155,13 +166,17 @@ def terminal():
             if user_input[0] in functions:
                 # check if the function requires an argument
                 if functions[user_input[0]].__code__.co_argcount == 1:
-                    print("Function requires an argument")
+                    print("----------------"
+                        "\n--!!Function requires an argument!!--"
+                        "\n----------------\n")
                 else:
                     functions[user_input[0]]()
             elif user_input[0] == "exit":
                 break
             else:
-                print("Invalid input")
+                print("----------------"
+                    "\n--!!Invalid input!!--"
+                    "\n----------------\n")
 
         elif len(user_input) == 2:
             # Check if the function exists
@@ -169,6 +184,7 @@ def terminal():
                 # Call the function
                 functions[user_input[0]](user_input[1])
             elif user_input[0] == "exit":
+                print("\n!!GoodBye!!")
                 break
             else:
                 print("Invalid input")
@@ -178,5 +194,8 @@ def terminal():
 
 if __name__ == "__main__":
     # Repeat the terminal until the user enters "exit"
-    terminal()
+    try:
+        terminal()
+    except KeyboardInterrupt:
+        print("\n!!GoodBye!!")
 
