@@ -175,7 +175,7 @@ functions = {
 def terminal():
     while True:
         # Show the user help message
-        print("------------------------------------------------"
+        print("\n------------------------------------------------"
             "\n>> USAGE MESSAGE <<"
             "\n* Use keyword 'exit' or ^C to exit the program"
             "\n* Enter a function, or type 'help' for a list of functions"
