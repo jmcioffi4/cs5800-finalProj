@@ -1,9 +1,32 @@
+from viewSQLDB import usageMessage
+
 def menu():
-    # TODO : Create a menu option to view database information (both player and developer view); this option will lead to calling terminal() (from viewSQLDB) in main with how it is currently set up.
+    return showMainMenu()
 
-    # TODO : Create a menu option to modify the database information
+def showMainMenu() -> int:
+    print(f'''
+            1. PlayerView
+            2. DeveloperView (require a password)
+            3. Exit Program
+        ''')
+    userResponse = input("SELECTION: ")
+    return userResponse
 
-    # TODO : Create a menu option to exit the program
+def showPlayerViewMenu() -> int:
+    print(f'''
+        1. View specifics of the database
+        2. Exit to main menu
+        ''')
+    userResponse = input("SELECTION: ")
+    return userResponse
 
-    # IDEA? : Create two menu options, Player View and DeveloperView. (Would need to refactor viewSQLDB.py in this case)
-    pass
+def showDeveloperViewMenu() -> int:
+    print(f'''
+        1. Modify a table
+        2. Delete a table
+        3. Insert into a table
+        4. View specifics of the databse
+        5. Exit to main menu
+        ''')
+    userResponse = input("SELECTION: ")
+    return userResponse
