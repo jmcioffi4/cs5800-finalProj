@@ -1,7 +1,6 @@
 from dbConnector import dbConnector
-import pandas
 from sys import exit
-from os import system
+from pandas import DataFrame
 
 # # Need a empty function for each query
 # Functional Requirements:
@@ -16,9 +15,10 @@ def playerInventory(playerID):
     Arguments:
         playerID: The ID of the player"""
     if playerID.isdigit():
-        print(pandas.DataFrame(database.executeSQL(f"SELECT * FROM IsHolding WHERE playerID = {playerID}")))
+        results = database.executeSQL(f"SELECT * FROM IsHolding WHERE playerID = {playerID}")
+        print(DataFrame(results, columns = ['playerID', 'itemID']))
     else:
-        usageMessage(f"[{playerID}] was not a valid ID")
+        usageMessage(f"[{playerID}] was not a valid ID for [playerInventory]")
     
 # The Game Player must be able to see a list of villagers that live in the player’s world
 def playerVillagers(playerID):
@@ -132,8 +132,8 @@ def functionHelp(function):
         print("Invalid input")
 
 def usageMessage(message):
-    system('clear') # clear the screen for the user
-    print(f"----------------"
+    # system('clear') # clear the screen for the user
+    print(f"\n----------------"
            f"\n>> USAGE MESSGE << "
            f"\n{message}"
            f"\n----------------")
@@ -174,6 +174,7 @@ def terminal():
 
         # Take input from user, split it into a list, and then assign it to a variable
         user_input = input("INPUT: ").split()
+        print("") # print a line for space
         if user_input[0] in functions:
             if (len(user_input)==1):
                 # Check if there's an argument needed
