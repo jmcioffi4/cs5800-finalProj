@@ -203,7 +203,7 @@ def help():
         None"""
 
     print("List of functions:")
-    for i in functions:
+    for i in mainDict:
         print("\t"+i)
 
 # Give details of a specific function
@@ -239,13 +239,40 @@ def makeDBandPrint(results, columnsList):
     print(tabulate(df, headers='keys', tablefmt='psql'))
 
 # create a dictionary of functions
-functions = {
+# allFunctions = {
+#     "playerInventory": playerInventory,
+#     "playerVillagers": playerVillagers,
+#     "playerCaughtCreatures": playerCaughtCreatures,
+#     "playerDonatedCreatures": playerDonatedCreatures,
+#     "playerWorldDetails": playerWorldDetails,
+#     "playerListOfPlayers" : playerListOfPlayers,
+#     "devPlayerInventory": devPlayerInventory,
+#     "devVillagers": devVillagers,
+#     "devCreatures": devCreatures,
+#     "devFish": devFish,
+#     "devBugs": devBugs,
+#     "devFossils": devFossils,
+#     "devCrustaceans": devCrustaceans,
+#     "devWorldDetails": devWorldDetails,
+#     "devFullPlayerList" : devFullPlayerList,
+#     "devWorldPlayers": devWorldPlayers,
+#     "usageMessage" : usageMessage,
+#     "makeDBandPrint" : makeDBandPrint,
+#     "help": help,
+#     "functionHelp": functionHelp,
+# }
+
+playerViewFunctions = {
     "playerInventory": playerInventory,
     "playerVillagers": playerVillagers,
     "playerCaughtCreatures": playerCaughtCreatures,
     "playerDonatedCreatures": playerDonatedCreatures,
     "playerWorldDetails": playerWorldDetails,
-    "playerListOfPlayers" : playerListOfPlayers,
+    "help": help,
+    "functionHelp": functionHelp,
+}
+
+developerViewFunctions = {
     "devPlayerInventory": devPlayerInventory,
     "devVillagers": devVillagers,
     "devCreatures": devCreatures,
@@ -262,38 +289,14 @@ functions = {
     "functionHelp": functionHelp,
 }
 
-# playerViewFunctions = {
-#     "playerInventory": playerInventory,
-#     "playerVillagers": playerVillagers,
-#     "playerCaughtCreatures": playerCaughtCreatures,
-#     "playerDonatedCreatures": playerDonatedCreatures,
-#     "playerWorldDetails": playerWorldDetails,
-# }
-
-# developerViewFunctions = {
-#     "devPlayerInventory": devPlayerInventory,
-#     "devVillagers": devVillagers,
-#     "devCreatures": devCreatures,
-#     "devFish": devFish,
-#     "devBugs": devBugs,
-#     "devFossils": devFossils,
-#     "devCrustaceans": devCrustaceans,
-#     "devWorldDetails": devWorldDetails,
-#     "devFullPlayerList" : devFullPlayerList,
-#     "devWorldPlayers": devWorldPlayers,
-#     "usageMessage" : usageMessage,
-#     "makeDBandPrint" : makeDBandPrint,
-# }
-
-# functions = {
-#     "playerView" : playerViewFunctions,
-#     "developerView" : developerViewFunctions,
-#     "help": help,
-#     "functionHelp": functionHelp,
-# }
-
 # viewDB must take one or two arguments, the first decides which function is called, and the second is used if the function requires an argument
-def viewDB():
+def viewDB(viewMode):
+    global mainDict
+    if viewMode == "playerView":
+        mainDict = playerViewFunctions
+    elif viewMode == "developerView":
+        mainDict = developerViewFunctions
+
     while True:
         # Show the user help message
         print('''\n------------------------------------------------"
@@ -311,29 +314,23 @@ def viewDB():
         
         # check the args
         try:
-            # if user_input[0] == "playerView":
-            #     # show playerView dictionary functions
-            #     pass
-            # if user_input[0] == "developerView":
-            #     # show developerView dictionary functions
-            #     pass
-            if user_input[0] in functions:
+            if user_input[0] in mainDict:
                 if (len(user_input)==1):
                     # Check if there's an argument needed
-                    if functions[user_input[0]].__code__.co_argcount == 1:
+                    if mainDict[user_input[0]].__code__.co_argcount == 1:
                         usageMessage("!!Function requires an argument!!")
                     else:
-                        functions[user_input[0]]()
+                        mainDict[user_input[0]]()
                 if (len(user_input) == 2):
                     # bypass isDigit check for every other function that needs it
                     if (user_input.__contains__('functionHelp')):
-                        functions[user_input[0]](user_input[1])
+                        mainDict[user_input[0]](user_input[1])
                         continue
                     # if we aren't getting functionHelp, then the arg needs to be a int (ID)
                     try:
                         if (user_input[1].isdigit()):
                         # Call the function
-                            functions[user_input[0]](user_input[1])
+                            mainDict[user_input[0]](user_input[1])
                         else:
                             usageMessage(f"[{user_input[1]}] is not a valid ID]")
                     except TypeError:
@@ -341,9 +338,8 @@ def viewDB():
                         continue;
         
             elif user_input[0] == "exit":
-                    usageMessage("!!GoodBye!!")
-                    exit(0)
-            
+                    usageMessage("Returning to Main Menu")
+                    return # return to main.py to see main menu
             else:
                     usageMessage("!!Invalid input!!")
         except IndexError:

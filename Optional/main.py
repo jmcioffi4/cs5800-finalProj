@@ -8,6 +8,7 @@ if __name__ == "__main__":
     try:
         # show the user the 
         # TODO: Add more options (with 'exit') so user can go back to main menu in viewDB()
-        viewDB()
+        viewMode = "developerView" # TEMP - need to get this from the menu option
+        viewDB(viewMode)
     except KeyboardInterrupt:
         usageMessage("!!GoodBye!!")
