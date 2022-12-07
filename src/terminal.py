@@ -42,7 +42,15 @@ def playerCaughtCreatures(playerID):
     """The Game Player must be able to see a list of creatures that they have caught
     Arguments:
         playerID: The ID of the player"""
-    pass
+    if playerID.isdigit:
+        results = database.executeSQL(f'''SELECT creature.* 
+                                        FROM hasCaught, creature 
+                                        WHERE hasCaught.playerId = {playerID}
+                                        AND hasCaught.creatureID = creature.creatureID; ''')
+        df = DataFrame(results, columns = ['CreatureID', 'Name', 'isDonated', 'rarity', 'timeOfDay', 'season'])
+        print(tabulate(df, headers='keys', tablefmt='psql'))
+    else:
+        usageMessage(f"[{playerID}] was not a valid ID for [playerCaughtCreatures]")
 
 # The Game Player must be able to see a list of creatures that have been donated to their world
 def playerDonatedCreatures(playerID):
