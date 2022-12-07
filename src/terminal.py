@@ -94,7 +94,7 @@ def playerWorldDetails(playerID):
         df = DataFrame(results, columns=['worldID', 'name', 'color', 'rating', 'fruit', 'season', 'weather', 'timeOfDay'])
         print(tabulate(df, headers='keys', tablefmt='psql'))
     else:
-        usageMessage(f"[{playerID}] was not a valid ID for [playerDonatedCreatures]") 
+        usageMessage(f"[{playerID}] was not a valid ID for [playerWorldDetails]") 
 
 # The Game Developer must be able to see a list of any player’s inventory
 def devPlayerInventory(playerID):
@@ -108,7 +108,13 @@ def devVillagers():
     """The Game Developer must be able to see a list of all villagers
     Arguments:
         None"""
-    pass    
+    results = database.executeSQL(f'''
+                                    SELECT * 
+                                    FROM villager;
+                                    ''')
+    df = DataFrame(results, columns=['NPCID', 'name','personality','gender','birthday','species'])
+    print(tabulate(df, headers='keys', tablefmt='psql'))
+   
 
 # The Game Developer must be able to see a full list of creatures
 def devCreatures():
