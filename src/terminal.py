@@ -144,7 +144,11 @@ def devCrustaceans():
     """The Game Developer must be able to see a full list of crustaceans
     Arguments:
         None"""
-    pass
+    results = database.executeSQL(f'''
+                                    SELECT * 
+                                    FROM crustacean;
+                                    ''')
+    makeDBandPrint(results, columnsList=['creatureID','speed'])
 
 # The Game Developer must be able to see details of any world
 def devWorldDetails(worldID):
