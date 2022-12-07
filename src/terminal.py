@@ -76,6 +76,13 @@ def playerWorldDetails(playerID):
                                     ''')
     makeDBandPrint(results, columnsList=['worldID', 'name', 'color', 'rating', 'fruit', 'season', 'weather', 'timeOfDay'])
 
+# TODO: The Game Player must be able to get a list of players that live on their world
+def playerListOfPlayers(playerID):
+    """The Game Player must be able to get a list of players that live on their world
+    Arguemnts:
+        playerID: The ID of the player"""
+    pass
+
 # The Game Developer must be able to see a list of any player’s inventory
 def devPlayerInventory(playerID):
     """The Game Developer must be able to see a list of any player’s inventory
@@ -161,16 +168,26 @@ def devWorldDetails(worldID):
                                     ''')
     makeDBandPrint(results, columnsList=['worldID','name','color','rating','fruit','season','weather','timeOfDay'])
 
+# The Game Developer must be able to get a full list of players
+def devFullPlayerList():
+    """The Game Developer must be able to get a full list of players"""
+    results = database.executeSQL(f'''
+                                    SELECT * 
+                                    FROM player;
+                                    ''')
+    makeDBandPrint(results, columnsList=['playerID','name','birthday','hairColor','eyeColor','isWorldRep'])
+
 # The Game Developer must be able to get a list of players that live on a specific world
 def devWorldPlayers(worldID):
     """The Game Developer must be able to get a list of players that live on a specific world
     Arguments:
         worldID: The ID of the world"""
     results = database.executeSQL(f'''
-                                    SELECT * 
-                                    FROM player;
-                                    ''')
-    makeDBandPrint(results, columnsList=['playerID','name','birthday','hairColor','eyeColor','isWorldRep'])
+                                SELECT playerID 
+                                FROM livesOn 
+                                WHERE liveson.worldID = {worldID};
+                                ''')
+    makeDBandPrint(results, columnsList=['playerID'])
 
 # Print a list of all functions, and their arguments
 def help():
@@ -188,18 +205,29 @@ def functionHelp(function):
     Arguments:
         function: The name of the function"""
     if function in functions:
-        print(functions[function].__doc__)
+        usageMessage(functions[function].__doc__)
     else:
-        print("Invalid input")
+        usageMessage("Invalid input")
 
 def usageMessage(message):
-    # system('clear') # clear the screen for the user
+    """Reports a Usage Message to the user if something invalid happens
+        FOR INTERNAL USE ONLY"""
     print(f'''\n----------------
            \n>> USAGE MESSGE << 
            \n{message}
            \n----------------''')
 
 def makeDBandPrint(results, columnsList):
+    """Internal Function that is called by all functions to 
+    create a pretty sql looking table and output the data to the user
+   
+    Arguments:
+        results: the results from the .executeSQL() function call
+        columnsList: the column names in a list of strings; is important to be 
+            right otherwise program will crash (make sure that you have the right
+            number of columns and the right column names from the SQL data returned)
+            
+    FOR INTERNAL USE ONLY"""
     df = DataFrame(results, columns=columnsList)
     print(tabulate(df, headers='keys', tablefmt='psql'))
 
@@ -220,7 +248,10 @@ functions = {
     "devFossils": devFossils,
     "devCrustaceans": devCrustaceans,
     "devWorldDetails": devWorldDetails,
+    "devFullPlayerList" : devFullPlayerList,
     "devWorldPlayers": devWorldPlayers,
+    "usageMessage" : usageMessage,
+    "makeDBandPrint" : makeDBandPrint,
     "help": help,
     "functionHelp": functionHelp,
 }
@@ -253,6 +284,11 @@ def terminal():
                     else:
                         functions[user_input[0]]()
                 if (len(user_input) == 2):
+                    # bypass isDigit check for every other function that needs it
+                    if (user_input.__contains__('functionHelp')):
+                        functions[user_input[0]](user_input[1])
+                        continue
+                    # if we aren't getting functionHelp, then the arg needs to be a int (ID)
                     try:
                         if (user_input[1].isdigit()):
                         # Call the function
