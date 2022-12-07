@@ -15,86 +15,67 @@ def playerInventory(playerID):
     """The Game Player must be able to see their player’s inventory
     Arguments:
         playerID: The ID of the player"""
-    if playerID.isdigit():
-        results = database.executeSQL(f'''
-                                        SELECT * 
-                                        FROM IsHolding 
-                                        WHERE playerID = {playerID}
-                                        ''')
-        df = DataFrame(results, columns = ['playerID', 'itemID'])
-        print(tabulate(df, headers='keys', tablefmt='psql'))
-    else:
-        usageMessage(f"[{playerID}] was not a valid ID for [playerInventory]")
+    results = database.executeSQL(f'''
+                                    SELECT * 
+                                    FROM IsHolding 
+                                    WHERE playerID = {playerID}
+                                    ''')
+    makeDBandPrint(results, columnsList=['playerID', 'itemID'])
+        
     
 # The Game Player must be able to see a list of villagers that live in the player’s world
 def playerVillagers(worldID):
     """The Game Player must be able to see a list of villagers that live on the specified worldID
     Arguments:
         playerID: The ID of the player"""
-    if worldID.isdigit():
-        results = database.executeSQL(f'''
-                                        SELECT v.*
-                                        FROM Villager v
-                                        JOIN hasVillager h ON h.NPCID = v.NPCID
-                                        WHERE h.worldID = {worldID}
-                                        ''')
-        df = DataFrame(results, columns = ['NPCID', 'Name', 'Personality', 'Gender', 'Birthday', 'Species'])
-        print(tabulate(df, headers='keys', tablefmt='psql'))
-    else:
-        usageMessage(f"[{worldID}] was not a valid ID for [playerVillagers]")
+    results = database.executeSQL(f'''
+                                    SELECT v.*
+                                    FROM Villager v
+                                    JOIN hasVillager h ON h.NPCID = v.NPCID
+                                    WHERE h.worldID = {worldID}
+                                    ''')
+    makeDBandPrint(results, columnsList=['NPCID', 'Name', 'Personality', 'Gender', 'Birthday', 'Species'])
 
 # The Game Player must be able to see a list of creatures that they have caught
 def playerCaughtCreatures(playerID):
     """The Game Player must be able to see a list of creatures that they have caught
     Arguments:
         playerID: The ID of the player"""
-    if playerID.isdigit:
-        results = database.executeSQL(f'''
-                                        SELECT creature.* 
-                                        FROM hasCaught, creature 
-                                        WHERE hasCaught.playerId = {playerID}
-                                        AND hasCaught.creatureID = creature.creatureID; 
-                                        ''')
-        df = DataFrame(results, columns = ['CreatureID', 'Name', 'isDonated', 'rarity', 'timeOfDay', 'season'])
-        print(tabulate(df, headers='keys', tablefmt='psql'))
-    else:
-        usageMessage(f"[{playerID}] was not a valid ID for [playerCaughtCreatures]")
-
+    results = database.executeSQL(f'''
+                                    SELECT creature.* 
+                                    FROM hasCaught, creature 
+                                    WHERE hasCaught.playerId = {playerID}
+                                    AND hasCaught.creatureID = creature.creatureID; 
+                                    ''')
+    makeDBandPrint(results, columnsList=['CreatureID', 'Name', 'isDonated', 'rarity', 'timeOfDay', 'season'])
+    
 # The Game Player must be able to see a list of creatures that have been donated to their world
 def playerDonatedCreatures(playerID):
     """The Game Player must be able to see a list of creatures that have been donated to their world
     Arguments:
         playerID: The ID of the player"""
-    if playerID.isdigit():
-        results = database.executeSQL(f'''
-                                    SELECT creature.* 
-                                    FROM creature, player, hasDonated, livesOn 
-                                    WHERE player.playerID = {playerID}
-                                    AND player.playerID = livesOn.playerID 
-                                    AND livesOn.WorldID = hasDonated.WorldId 
-                                    AND creature.CreatureID = HasDonated.creatureId; 
-                                        ''')
-        df = DataFrame(results, columns=['creatureID', 'name', 'isDonated', 'rarity', 'timeOfDay', 'season'])
-        print(tabulate(df, headers='keys', tablefmt='psql'))
-    else:
-        usageMessage(f"[{playerID}] was not a valid ID for [playerDonatedCreatures]")    
+    results = database.executeSQL(f'''
+                                SELECT creature.* 
+                                FROM creature, player, hasDonated, livesOn 
+                                WHERE player.playerID = {playerID}
+                                AND player.playerID = livesOn.playerID 
+                                AND livesOn.WorldID = hasDonated.WorldId 
+                                AND creature.CreatureID = HasDonated.creatureId; 
+                                    ''')
+    makeDBandPrint(results, columnsList=['creatureID', 'name', 'isDonated', 'rarity', 'timeOfDay', 'season'])
 
 # The Game Player must be able to see details of their world
 def playerWorldDetails(playerID):
     """The Game Player must be able to see details of their world
     Arguments:
         playerID: The ID of the player"""
-    if playerID.isdigit():
-        results = database.executeSQL(f'''
-                                        SELECT world.* 
-                                        FROM world, livesOn 
-                                        WHERE livesOn.playerId = {playerID}
-                                        AND livesOn.worldId = world.worldId;
-                                        ''')
-        df = DataFrame(results, columns=['worldID', 'name', 'color', 'rating', 'fruit', 'season', 'weather', 'timeOfDay'])
-        print(tabulate(df, headers='keys', tablefmt='psql'))
-    else:
-        usageMessage(f"[{playerID}] was not a valid ID for [playerWorldDetails]") 
+    results = database.executeSQL(f'''
+                                    SELECT world.* 
+                                    FROM world, livesOn 
+                                    WHERE livesOn.playerId = {playerID}
+                                    AND livesOn.worldId = world.worldId;
+                                    ''')
+    makeDBandPrint(results, columnsList=['worldID', 'name', 'color', 'rating', 'fruit', 'season', 'weather', 'timeOfDay'])
 
 # The Game Developer must be able to see a list of any player’s inventory
 def devPlayerInventory(playerID):
@@ -112,8 +93,7 @@ def devVillagers():
                                     SELECT * 
                                     FROM villager;
                                     ''')
-    df = DataFrame(results, columns=['NPCID', 'name','personality','gender','birthday','species'])
-    print(tabulate(df, headers='keys', tablefmt='psql'))
+    makeDBandPrint(results, columnsList=['NPCID', 'name','personality','gender','birthday','species'])
    
 
 # The Game Developer must be able to see a full list of creatures
@@ -192,6 +172,10 @@ def usageMessage(message):
            \n{message}
            \n----------------''')
 
+def makeDBandPrint(results, columnsList):
+    df = DataFrame(results, columns=columnsList)
+    print(tabulate(df, headers='keys', tablefmt='psql'))
+
 
 
 # create a dictionary of functions
@@ -241,8 +225,11 @@ def terminal():
                 else:
                     functions[user_input[0]]()
             if (len(user_input) == 2):
+                if (user_input[1].isdigit()):
                  # Call the function
-                functions[user_input[0]](user_input[1])
+                    functions[user_input[0]](user_input[1])
+                else:
+                    usageMessage(f"[{user_input[1]}] is not a valid ID]")
         
         elif user_input[0] == "exit":
                 usageMessage("!!GoodBye!!")
