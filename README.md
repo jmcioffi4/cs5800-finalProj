@@ -8,6 +8,8 @@
     *   `pandas` via `pip3 install pandas`
     *   `mysql` via `pip3 install mysql`
     *   **NOTE** Please use your computer's appropriate version of `pip` to insure installation goes correctly.
+*   In `dbConnector.py` please make sure that the info on lines 7 through 10 are correct for your device. If you do not have a password for your SQL, comment out line 9 (for password). 
+    *   Line 9 should be the only thing you need to change if you are like most users.
 
 ## The Entry Point to the Program
 *   The entry point to the program is `terminal.py` located in `src/`
