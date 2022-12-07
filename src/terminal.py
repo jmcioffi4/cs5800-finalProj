@@ -94,7 +94,6 @@ def devVillagers():
                                     ''')
     makeDBandPrint(results, columnsList=['NPCID', 'name','personality','gender','birthday','species'])
    
-
 # The Game Developer must be able to see a full list of creatures
 def devCreatures():
     """The Game Developer must be able to see a full list of creatures
@@ -245,26 +244,34 @@ def terminal():
         print("") 
         
         # check the args
-        if user_input[0] in functions:
-            if (len(user_input)==1):
-                # Check if there's an argument needed
-                if functions[user_input[0]].__code__.co_argcount == 1:
-                    usageMessage("!!Function requires an argument!!")
-                else:
-                    functions[user_input[0]]()
-            if (len(user_input) == 2):
-                if (user_input[1].isdigit()):
-                 # Call the function
-                    functions[user_input[0]](user_input[1])
-                else:
-                    usageMessage(f"[{user_input[1]}] is not a valid ID]")
+        try:
+            if user_input[0] in functions:
+                if (len(user_input)==1):
+                    # Check if there's an argument needed
+                    if functions[user_input[0]].__code__.co_argcount == 1:
+                        usageMessage("!!Function requires an argument!!")
+                    else:
+                        functions[user_input[0]]()
+                if (len(user_input) == 2):
+                    try:
+                        if (user_input[1].isdigit()):
+                        # Call the function
+                            functions[user_input[0]](user_input[1])
+                        else:
+                            usageMessage(f"[{user_input[1]}] is not a valid ID]")
+                    except TypeError:
+                        usageMessage("Invalid Input for the ID arg")
+                        continue;
         
-        elif user_input[0] == "exit":
-                usageMessage("!!GoodBye!!")
-                exit(0)
-        
-        else:
-                usageMessage("!!Invalid input!!")
+            elif user_input[0] == "exit":
+                    usageMessage("!!GoodBye!!")
+                    exit(0)
+            
+            else:
+                    usageMessage("!!Invalid input!!")
+        except IndexError:
+                usageMessage("Invalid Input")
+                continue;
 
 
 if __name__ == "__main__":
