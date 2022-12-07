@@ -155,14 +155,23 @@ def devWorldDetails(worldID):
     """The Game Developer must be able to see details of any world
     Arguments:
         worldID: The ID of the world"""
-    pass
+    results = database.executeSQL(f'''
+                                    SELECT * 
+                                    FROM world 
+                                    WHERE worldID = {worldID};
+                                    ''')
+    makeDBandPrint(results, columnsList=['worldID','name','color','rating','fruit','season','weather','timeOfDay'])
 
 # The Game Developer must be able to get a list of players that live on a specific world
 def devWorldPlayers(worldID):
     """The Game Developer must be able to get a list of players that live on a specific world
     Arguments:
         worldID: The ID of the world"""
-    pass
+    results = database.executeSQL(f'''
+                                    SELECT * 
+                                    FROM player;
+                                    ''')
+    makeDBandPrint(results, columnsList=['playerID','name','birthday','hairColor','eyeColor','isWorldRep'])
 
 # Print a list of all functions, and their arguments
 def help():
