@@ -5,6 +5,7 @@ def menu():
 
 def showMainMenu() -> int:
     print(f'''
+        MAIN MENU
             1. PlayerView
             2. DeveloperView (require a password)
             3. Exit Program

@@ -278,9 +278,9 @@ def viewDB(viewMode):
         # Show the user help message
         print('''\n------------------------------------------------"
             \n>> USAGE MESSAGE (VIEWING DATABASE) <<
-            \n* Use keyword 'exit' or ^C to exit the program
-            \n* Enter a function, or type 'help' for a list of functions
-            \n* Input must be in the format '<functionName> <argument>'
+            \n* Use keyword 'exit' or 'X' to exit to the main menu
+            \n* Enter a function, or type 'help' for a list of functions in your view
+            \n* Input must be in the format '<functionName> [<argument>]'
             \n------------------------------------------------\n''')
 
         # Take input from user, split it into a list, and then assign it to a variable
@@ -311,10 +311,10 @@ def viewDB(viewMode):
                         else:
                             usageMessage(f"[{user_input[1]}] is not a valid ID]")
                     except TypeError:
-                        usageMessage("Invalid Input for the ID arg")
-                        continue;
+                        usageMessage("Invalid Input for the ID arg (try without an ID argument)")
+                        continue
         
-            elif user_input[0] == "exit":
+            elif user_input[0].lower() == "exit" or 'X':
                     usageMessage("Returning to Main Menu")
                     return # return to main.py to see main menu
             else:

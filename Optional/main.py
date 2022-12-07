@@ -3,20 +3,20 @@ import menu
 
 def showDevView():
     developerMenuInput = menu.showDeveloperViewMenu()
-    if developerMenuInput == 1:
+    if developerMenuInput == '1':
         # call to modify a table
         pass
-    elif developerMenuInput == 2:
+    elif developerMenuInput == '2':
         # call to delete a table
         pass
-    elif developerMenuInput == 3:
+    elif developerMenuInput == '3':
         # call to insert into a table
         pass
-    elif developerMenuInput == 4:
+    elif developerMenuInput == '4':
         # call viewSQLDB.py with viewMode = "developerView"
         viewDB("developerView")
         return # if user backs to main menu, restart with main menu
-    elif developerMenuInput == 5:
+    elif developerMenuInput == '5':
         # go back a menu, show the main
         pass
 
@@ -29,11 +29,11 @@ if __name__ == "__main__":
             # Player View Selected
             if mainMenuInput == '1':
                 playerMenuInput = menu.showPlayerViewMenu()
-                if playerMenuInput == 1:
+                if playerMenuInput == '1':
                     # call viewSQLDB.py with viewMode = "playerView"
                     viewDB("playerView")
                     continue # if user backs to main menu, restart with main menu
-                elif playerMenuInput == 2:
+                elif playerMenuInput == '2':
                     usageMessage(" Returning to main menu ")
                 else:
                     usageMessage("Invalid Menu Option, please try again")
