@@ -1,4 +1,5 @@
 import mysql.connector
+import viewSQLDB
 
 class dbConnector():
     def __init__(self):
@@ -55,6 +56,5 @@ class dbConnector():
                 sql = f"UPDATE {table} SET {attribute_name} = '{new_value}' WHERE {attribute_name} = '{old_value}';"
             self.mycursor.execute(sql)
             self.mydb.commit()
-
         except mysql.connector.Error as err:
             print("Something went wrong: {}".format(err))
