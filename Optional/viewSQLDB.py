@@ -312,7 +312,7 @@ class viewSQLDB():
             
                 elif (user_input[0].lower() == "exit"):
                         self.usageMessage("Returning to Main Menu")
-                        return # return to main.py to see main menu
+                        break
                 else:
                         self.usageMessage("!!Invalid input!!")
             except IndexError:
