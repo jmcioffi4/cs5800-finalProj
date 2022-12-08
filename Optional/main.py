@@ -28,7 +28,7 @@ def showDevView(database, viewDB):
         # call viewSQLDB.py with viewMode = "developerView"
         viewDB.viewDB("developerView")
         return # if user backs to main menu, restart with main menu
-    elif developerMenuInput == '5':
+    elif developerMenuInput == '5' or developerMenuInput == 'X':
         # go back a menu, show the main
         return
 
@@ -49,7 +49,7 @@ if __name__ == "__main__":
                     # call viewSQLDB.py with viewMode = "playerView"
                     viewDB.viewDB("playerView")
                     continue # if user backs to main menu, restart with main menu
-                elif playerMenuInput == '2':
+                elif playerMenuInput == '2' or playerMenuInput == 'X':
                     viewDB.usageMessage(" Returning to main menu ")
                 else:
                     viewDB.usageMessage("Invalid Menu Option, please try again")
@@ -69,7 +69,7 @@ if __name__ == "__main__":
                         viewDB.usageMessage("Oops thats not a valid password. Try again \nOR type 'X' to go back to the main menu")
 
             # Exit Program Selected
-            elif mainMenuInput == '3':
+            elif mainMenuInput == '3' or mainMenuInput == 'X':
                 # User wants to exit program
                 viewDB.usageMessage("!! Goodbye !!")
                 exit(0)

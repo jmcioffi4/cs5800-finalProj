@@ -309,7 +309,7 @@ class viewSQLDB():
                             self.usageMessage("Invalid Input for the ID arg (try without an ID argument)")
                             continue
             
-                elif user_input[0].lower() == "exit" or 'X':
+                elif user_input[0].lower() == "exit" or user_input[0].lower() == 'X':
                         self.usageMessage("Returning to Main Menu")
                         return # return to main.py to see main menu
                 else:
