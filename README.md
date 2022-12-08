@@ -28,6 +28,7 @@
 *   a valid `USAGE MESSAGE` will pop up with relevant information if an error occurs
     *   If you don't see output, it's working right.
 *   *PLEASE NOTE* The program is case sensitive. Please check your spelling and capitalization appropriately and any other syntax.
+*   **IMPORTANT:** when `INSERT`ing into a table, you may get errors due to needing to type in enums. Please refer to `SQL/create.sql` to see which tables have which enums.
 
 ## DeveloperView
 *   The password is `password`
