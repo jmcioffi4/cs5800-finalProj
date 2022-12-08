@@ -275,7 +275,7 @@ class viewSQLDB():
             print('''\u001b[1;32;40m
                 \n------------------------------------------------"
                 \n>> USAGE MESSAGE (VIEWING DATABASE) <<
-                \n* Use keyword 'exit' or 'X' to exit to the main menu
+                \n* Use keyword 'exit' to exit to the main menu
                 \n* Enter a function, or type 'help' for a list of functions in your view
                 \n* Input must be in the format '<functionName> [<argument>]'
                 \n------------------------------------------------\n''')
@@ -310,7 +310,7 @@ class viewSQLDB():
                             self.usageMessage("Invalid Input for the ID arg (try without an ID argument)")
                             continue
             
-                elif user_input[0].lower() == "exit" or user_input[0].lower() == 'X':
+                elif (user_input[0].lower() == "exit"):
                         self.usageMessage("Returning to Main Menu")
                         return # return to main.py to see main menu
                 else:
