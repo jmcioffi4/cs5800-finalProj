@@ -66,14 +66,14 @@ if __name__ == "__main__":
                         devPassword = input("Please Enter Password: ")
                         if devPassword == 'password':
                             passwordEntered = True
-                            showDevView(database, viewDB)
+                            break
                         elif devPassword == 'X':
                             break
                         else:
                             viewDB.usageMessage("Oops thats not a valid password. Try again \nOR type [capital] 'X' to go back to the main menu")
                     else:
-                        showDevView(database, viewDB)
                         break
+                showDevView(database, viewDB)
 
             # Exit Program Selected
             elif mainMenuInput == '3':

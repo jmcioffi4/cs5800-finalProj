@@ -4,13 +4,16 @@
 *   The user of the program must open MySQL Workbench and run the `create.sql` and then the `insert.sql` files in order for the program to work.
     *   These are located in the `SQL` directory
     *   If these files are not ran first, then the program may not output any data.
-* The user must have the following packages installed:
+*   In `dbConnector.py` please make sure that the info on lines 7 through 10 are correct for your device. **If you do not have a password for your SQL, comment out line 9** (for password). 
+    *   Line 9 should be the only thing you need to change if you are like most users.
+
+## Program Requirements
+* The user must have the following packages installed (install the newest release):
     *   `tabular` via `pip3 install tabular`
     *   `pandas` via `pip3 install pandas`
     *   `mysql` via `pip3 install mysql`
     *   **NOTE** Please use your computer's appropriate version of `pip` to insure installation goes correctly.
-*   In `dbConnector.py` please make sure that the info on lines 7 through 10 are correct for your device. **If you do not have a password for your SQL, comment out line 9** (for password). 
-    *   Line 9 should be the only thing you need to change if you are like most users.
+*   This program was written using `Python 3.10.8`, please use that version of python or higher to ensure the program works properly for you.
 
 ## The Entry Point to the Program
 *   The entry point to the program is `main.py` located in `Optional/`
@@ -21,7 +24,7 @@
 *   There is an on screen menu telling you what part of the program you are in and what options you can select. The options are numbers, just enter a valid number to pick an option.
 *   `INPUT` or `YOUR INPUT` is asking for a valid input from the user (what does the user want to see)
 *   a valid `USAGE MESSAGE` will pop up with relevant information if an error occurs
-    *   If you don't see output, it's probably working right.
+    *   If you don't see output, it's working right.
 *   *PLEASE NOTE* The program is case sensitive. Please check your spelling and capitalization appropriately and any other syntax.
 
 ## DeveloperView
