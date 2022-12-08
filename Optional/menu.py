@@ -2,7 +2,7 @@ def menu():
     return showMainMenu()
 
 def showMainMenu() -> int:
-    print(f'''
+    print(f'''\u001b[1;32;40m
         MAIN MENU
             1. PlayerView
             2. DeveloperView (require a password)
@@ -12,7 +12,7 @@ def showMainMenu() -> int:
     return userResponse
 
 def showPlayerViewMenu() -> int:
-    print(f'''
+    print(f'''\u001b[1;32;40m
         1. View specifics of the database
         2. (or 'X') Exit to main menu
         ''')
@@ -20,7 +20,7 @@ def showPlayerViewMenu() -> int:
     return userResponse
 
 def showDeveloperViewMenu() -> int:
-    print(f'''
+    print(f'''\u001b[1;32;40m
         1. Update a table
         2. Delete a table
         3. Insert into a table

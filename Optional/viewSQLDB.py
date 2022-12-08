@@ -119,7 +119,7 @@ class viewSQLDB():
         """The Game Developer must be able to see a list of any player’s inventory
         Arguments:
             playerID: The ID of the player"""
-        playerInventory(playerID)
+        self.playerInventory(playerID)
 
     # The Game Developer must be able to see a list of all villagers
     def devVillagers(self):
@@ -243,7 +243,8 @@ class viewSQLDB():
     def usageMessage(self, message):
         """Reports a Usage Message to the user if something invalid happens
             FOR INTERNAL USE ONLY"""
-        print(f'''\n----------------
+        print(f'''\u001b[1;32;40m
+            \n----------------
             \n>> USAGE MESSGE << 
             \n{message}
             \n----------------''')
@@ -271,7 +272,8 @@ class viewSQLDB():
 
         while True:
             # Show the user help message
-            print('''\n------------------------------------------------"
+            print('''\u001b[1;32;40m
+                \n------------------------------------------------"
                 \n>> USAGE MESSAGE (VIEWING DATABASE) <<
                 \n* Use keyword 'exit' or 'X' to exit to the main menu
                 \n* Enter a function, or type 'help' for a list of functions in your view
@@ -279,7 +281,7 @@ class viewSQLDB():
                 \n------------------------------------------------\n''')
 
             # Take input from user, split it into a list, and then assign it to a variable
-            user_input = input("INPUT: ").split()
+            user_input = input("\u001b[13;31;40m YOUR INPUT: ").split()
             
             # print a line for space
             print("") 
@@ -289,7 +291,6 @@ class viewSQLDB():
                 if user_input[0] in mainDict:
                     if (len(user_input)==1):
                         # Check if there's an argument needed
-                        print(f"USER INPUT: {self.mainDict[user_input[0]].__code__.co_argcount}")
                         if self.mainDict[user_input[0]].__code__.co_argcount == 2:
                             self.usageMessage("!!Function requires an argument!!")
                         else:

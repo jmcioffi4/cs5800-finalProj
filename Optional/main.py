@@ -33,10 +33,11 @@ def showDevView(database, viewDB):
         return
 
 if __name__ == "__main__":
-    # Create Database Connector Object
+    # Create Objects
     database = dbConnector()
     viewDB = viewSQLDB(database)
 
+    # run the program
     while (True):
         try:
             # show the user the menu
