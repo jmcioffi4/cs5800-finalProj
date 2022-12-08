@@ -21,9 +21,14 @@ class dbConnector():
 
     # FOR MODIFYING THE DATABASE
     def INSERT_SQL(self, table, values):
+        # values = values.split(" ")
+        '''
+        INSERT INTO Tool 
+        VALUES (15, 6, 'pole', 'yellow', 1);
+        '''
         """INSERT INTO {table} {values};"""
         try:
-            sql = f"INSERT INTO {table} {values};"
+            sql = f"INSERT INTO {table} VALUES ({values});"
             self.mycursor.execute(sql)
             self.mydb.commit()
         except mysql.connector.Error as err:

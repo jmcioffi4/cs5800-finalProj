@@ -22,8 +22,8 @@ def showPlayerViewMenu() -> int:
 def showDeveloperViewMenu() -> int:
     print(f'''\u001b[1;32;40m
         1. Update a table
-        2. Delete a table
-        3. Insert into a table
+        2. Delete a row from a table
+        3. Insert a new row into a table
         4. View specifics of the databse
         5. (or 'X') Exit to main menu
         ''')

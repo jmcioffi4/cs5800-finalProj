@@ -12,7 +12,7 @@ def showDevView(database, viewDB):
         old_value = input("\u001b[13;31;40mWhat was the old or current value of attribute_value? : ")
         database.UPDATE_SQL(tableToUpdate, attribute_name, new_value, old_value)
     elif developerMenuInput == '2':
-        # call to delete a table
+        # call to delete a row from a table
         tableToDelete = input("\u001b[13;31;40mFrom which table did you want to delete? : ")
         attribute_name = input("\u001b[13;31;40mSelect table attribute value to search by: ")
         value = input("\u001b[13;31;40mDelete all entries with what attribute value (specifically)? : ")
@@ -21,7 +21,7 @@ def showDevView(database, viewDB):
     elif developerMenuInput == '3':
         # call to insert into a table
         table = input("\u001b[13;31;40mWhat table did you want to insert into? : ")
-        value = input("\u001b[13;31;40mwhat value (or values) did you want to insert into that table? : ")
+        value = input("\u001b[13;31;40mwhat value (or values) did you want to insert into that table? (Ex: primaryKEY, INT, 'STRING') (NOTE: must be separated by commas, strings in single quotes) : ")
         database.INSERT_SQL(table, value)
 
     elif developerMenuInput == '4':
