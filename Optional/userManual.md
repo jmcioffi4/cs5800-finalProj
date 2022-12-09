@@ -126,6 +126,8 @@
     *   You will see a usage message if you did not give a proper parameter
 
 ## Developer View - INSERT, UPDATE, and DELETE options
+*   **IMPORTANT**
+    *   There are enums, see [create.sql](../SQL/create.sql) to see which enums you can use for attribute values, otherwise it will crash.
 *   `INSERT`
     *   The code runs the following SQL code: `INSERT INTO {table} VALUE ({values});`
     *   If an error occurs, it will tell you via a SQL error message
