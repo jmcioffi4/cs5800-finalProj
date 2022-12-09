@@ -132,9 +132,10 @@
     *   The code runs the following SQL code: `INSERT INTO {table} VALUE ({values});`
     *   If an error occurs, it will tell you via a SQL error message
     *   On screen prompts will take input for the variables it needs
-    *   Enter it like this: `'YYYY-MM-DD'`
+    *   Enter dates like this: `'YYYY-MM-DD'`
+    *   *NOTE* For sub-entity tables, you must insert on the parent before that child table
 *   `UPDATE`
-    *   The code runs the following SQL code: `f"UPDATE {table} SET {attribute_name} = {new_value} WHERE {attribute_name} = {old_value};"`
+    *   The code runs the following SQL code: `UPDATE {table} SET {attribute_name} = {new_value} WHERE {attribute_name} = {old_value};`
         *   there is another version for any strings passed, don't worry it works.
     *   On screen prompts will take input for the variables it needs
 *   `DELETE`
