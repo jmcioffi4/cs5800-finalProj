@@ -12,9 +12,10 @@
 
 ## Program Requirements
 * The user must have the following packages installed (install the newest release):
-    *   `tabular` via `pip3 install tabular`
-    *   `pandas` via `pip3 install pandas`
-    *   `mysql` via `pip3 install mysql`
+    *   Run `pip install -r requirements.txt` OR install the follow manually:
+        *   `tabular` via `pip3 install tabulate`
+        *   `pandas` via `pip3 install pandas`
+        *   `mysql` via `pip3 install mysql`
     *   **NOTE** Please use your computer's appropriate version of `pip` to insure installation goes correctly.
 *   This program was written using `Python 3.10.8`, please use that version of python or higher to ensure the program works properly for you.
 
