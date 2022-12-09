@@ -9,34 +9,34 @@ WHERE playerID = 1;
 -- The Game Player must be able to see a list of villagers that live in the player’s world
 SELECT v.*
 FROM Villager v
-JOIN hasVillager h ON h.NPCID = v.NPCID
+JOIN HasVillager h ON h.NPCID = v.NPCID
 WHERE h.worldID = 2;
 
 -- The Game Player must be able to see a list of creatures that they have caught
-SELECT creature.*
-FROM hasCaught, creature
-WHERE hasCaught.playerId = 2
-AND hasCaught.creatureID = creature.creatureID;
+SELECT Creature.*
+FROM HasCaught, Creature
+WHERE HasCaught.playerId = 2
+AND HasCaught.creatureID = Creature.creatureID;
 
 -- The Game Player must be able to see a list of creatures that have been donated to their world
-SELECT creature.*
-FROM creature, player, hasDonated, livesOn
-WHERE player.playerID = 1
-AND player.playerID = livesOn.playerID
-AND livesOn.WorldID = hasDonated.WorldId
-AND creature.CreatureID = HasDonated.creatureId;
+SELECT Creature.*
+FROM Creature, Player, HasDonated, LivesOn
+WHERE Player.playerID = 1
+AND Player.playerID = LivesOn.playerID
+AND LivesOn.WorldID = HasDonated.WorldId
+AND Creature.CreatureID = HasDonated.creatureId;
 
 -- The Game Player must be able to see details of their world
 SELECT world.*
-FROM world, livesOn
-WHERE livesOn.playerId = 2
-AND livesOn.worldId = world.worldId;
+FROM World, LivesOn
+WHERE LivesOn.playerId = 2
+AND LivesOn.worldId = world.worldId;
 
 -- The Game Player must be able to get a list of players that live on their world
 SELECT playerID
-FROM livesOn
-WHERE livesOn.worldId = (SELECT worldId 
-                         FROM livesOn 
+FROM LivesOn
+WHERE LivesOn.worldId = (SELECT worldId 
+                         FROM LivesOn 
                          WHERE playerId = 2) 
 
 -- Game Developer
@@ -47,15 +47,15 @@ WHERE playerID = 2;
 
 -- The Game Developer must be able to see a list of all villagers
 SELECT *
-FROM villager;
+FROM Villager;
 
 -- The Game Developer must be able to see a full list of creatures
 SELECT *
-FROM creature;
+FROM Creature;
 
 -- The Game Developer must be able to see a full list of fish
 SELECT * 
-FROM fish;
+FROM Fish;
 
 -- The Game Developer must be able to see a full list of bugs
 SELECT * 
@@ -63,7 +63,7 @@ FROM Bug;
 
 -- The Game Developer must be able to see a full list of fossils
 SELECT * 
-FROM fossil;
+FROM Fossil;
 
 -- The Game Developer must be able to see a full list of crustaceans
 SELECT * 
@@ -71,14 +71,14 @@ FROM Crustacean;
 
 -- The Game Developer must be able to see details of any world
 SELECT *
-FROM world
+FROM World
 WHERE worldID = 2;
 
 -- The Game Developer must be able to get a full list of players
 SELECT * 
-FROM player;
+FROM Player;
 
 -- The Game Developer must be able to get a list of players that live on a specific world
 SELECT playerID
-FROM livesOn
-WHERE liveson.worldID = 2;
+FROM LivesOn
+WHERE LivesOn.worldID = 2;
