@@ -1,5 +1,4 @@
 # User Manual for `Optional/main.py`
-[[_TOC_]]
 ## Main Menu
 *   The main menu will look like this:
     *   ```

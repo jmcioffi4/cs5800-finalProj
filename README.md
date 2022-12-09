@@ -1,5 +1,4 @@
 # cs5800-finalProj
-[[_TOC_]]
 
 ## See the [User's Manual](./Optional/userManual.md)
 *   This will explain each screen you see
