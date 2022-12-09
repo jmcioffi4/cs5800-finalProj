@@ -1,12 +1,13 @@
 # cs5800-finalProj
 
 ## Before Running the Program
-*   The user of the program must open MySQL Workbench and run the follwoing files in order for the program to work.
+*   The user needs to start their mySQL server *first*
+*   The user of the program must open MySQL Workbench and run the following files in order for the program to work.
     *   `create.sql`
     *   `insert.sql`
     *   These are located in the `SQL` directory
     *   If these files are not ran first, then the program may not output any data.
-*   In `dbConnector.py` please make sure that the info on lines 7 through 10 are correct for your device. **If you do not have a password for your SQL, comment out line 9** (for password). 
+*   In `Optional/dbConnector.py` please make sure that the info on lines 7 through 10 are correct for your device. **If you do not have a password for your SQL, comment out line 9** (for password). 
     *   Line 9 should be the only thing you need to change if you are like most users.
 
 ## Program Requirements
