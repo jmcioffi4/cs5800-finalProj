@@ -1,5 +1,8 @@
 # cs5800-finalProj
 
+## See the [User's Manual](./Optional/userManual.md)
+*   This will explain each screen you see
+
 ## Before Running the Program
 *   The user needs to start their mySQL server *first*
 *   The user of the program must open MySQL Workbench and run the following files in order for the program to work.
