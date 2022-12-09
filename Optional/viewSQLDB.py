@@ -54,7 +54,7 @@ class viewSQLDB():
         results = self.database.executeSQL(f'''
                                         SELECT v.*
                                         FROM Villager v
-                                        JOIN hasVillager h ON h.NPCID = v.NPCID
+                                        JOIN HasVillager h ON h.NPCID = v.NPCID
                                         WHERE h.worldID = {worldID}
                                         ''')
         self.makeDBandPrint(results, columnsList=['NPCID', 'Name', 'Personality', 'Gender', 'Birthday', 'Species'])
@@ -65,10 +65,10 @@ class viewSQLDB():
         Arguments:
             playerID: The ID of the player"""
         results = self.database.executeSQL(f'''
-                                        SELECT creature.* 
-                                        FROM hasCaught, creature 
-                                        WHERE hasCaught.playerId = {playerID}
-                                        AND hasCaught.creatureID = creature.creatureID; 
+                                        SELECT Creature.*
+                                        FROM HasCaught, Creature
+                                        WHERE HasCaught.playerId = {playerID}
+                                        AND HasCaught.creatureID = Creature.creatureID; 
                                         ''')
         self.makeDBandPrint(results, columnsList=['CreatureID', 'Name', 'isDonated', 'rarity', 'timeOfDay', 'season'])
         
@@ -78,12 +78,12 @@ class viewSQLDB():
         Arguments:
             playerID: The ID of the player"""
         results = self.database.executeSQL(f'''
-                                    SELECT creature.* 
-                                    FROM creature, player, hasDonated, livesOn 
-                                    WHERE player.playerID = {playerID}
-                                    AND player.playerID = livesOn.playerID 
-                                    AND livesOn.WorldID = hasDonated.WorldId 
-                                    AND creature.CreatureID = HasDonated.creatureId; 
+                                    SELECT Creature.*
+                                    FROM Creature, Player, HasDonated, LivesOn
+                                    WHERE Player.playerID = {playerID}
+                                    AND Player.playerID = LivesOn.playerID
+                                    AND LivesOn.WorldID = HasDonated.WorldId
+                                    AND Creature.CreatureID = HasDonated.creatureId; 
                                         ''')
         self.makeDBandPrint(results, columnsList=['creatureID', 'name', 'isDonated', 'rarity', 'timeOfDay', 'season'])
 
@@ -93,10 +93,10 @@ class viewSQLDB():
         Arguments:
             playerID: The ID of the player"""
         results = self.database.executeSQL(f'''
-                                        SELECT world.* 
-                                        FROM world, livesOn 
-                                        WHERE livesOn.playerId = {playerID}
-                                        AND livesOn.worldId = world.worldId;
+                                        SELECT World.*
+                                        FROM World, LivesOn
+                                        WHERE LivesOn.playerID = {playerID}
+                                        AND LivesOn.worldId = World.worldID;
                                         ''')
         self.makeDBandPrint(results, columnsList=['worldID', 'name', 'color', 'rating', 'fruit', 'season', 'weather', 'timeOfDay'])
 
@@ -107,10 +107,10 @@ class viewSQLDB():
             playerID: The ID of the player"""
         results = self.database.executeSQL(f'''
                                         SELECT playerID
-                                        FROM livesOn
-                                        WHERE livesOn.worldId = (SELECT worldId 
-                                                                FROM livesOn 
-                                                                WHERE playerId = {playerID}) 
+                                        FROM LivesOn
+                                        WHERE LivesOn.worldID = (SELECT worldID 
+                                                                FROM LivesOn 
+                                                                WHERE playerID = {playerID});
                                         ''')
         self.makeDBandPrint(results, columnsList=['playerID'])
 
@@ -128,7 +128,7 @@ class viewSQLDB():
             None"""
         results = self.database.executeSQL(f'''
                                         SELECT * 
-                                        FROM villager;
+                                        FROM Villager;
                                         ''')
         self.makeDBandPrint(results, columnsList=['NPCID', 'name','personality','gender','birthday','species'])
     
@@ -139,7 +139,7 @@ class viewSQLDB():
             None"""
         results = self.database.executeSQL(f'''
                                         SELECT * 
-                                        FROM creature;
+                                        FROM Creature;
                                         ''')
         self.makeDBandPrint(results, columnsList=['creatureID','name','isDonated','rarity','timeOfDay','season'])
 
@@ -150,7 +150,7 @@ class viewSQLDB():
             None"""
         results = self.database.executeSQL(f'''
                                         SELECT * 
-                                        FROM fish;
+                                        FROM Fish;
                                         ''')
         self.makeDBandPrint(results, columnsList=['creatureID','size','shadowSize','difficulty','spawnPoint'])
 
@@ -161,7 +161,7 @@ class viewSQLDB():
             None"""
         results = self.database.executeSQL(f'''
                                         SELECT * 
-                                        FROM bug;
+                                        FROM Bug;
                                         ''')
         self.makeDBandPrint(results, columnsList=['creatureID','speed','spawnPoint'])
 
@@ -172,7 +172,7 @@ class viewSQLDB():
             None"""
         results = self.database.executeSQL(f'''
                                         SELECT * 
-                                        FROM fossil;
+                                        FROM Fossil;
                                         ''')
         self.makeDBandPrint(results, columnsList=['creatureID','isExamined'])
 
@@ -183,7 +183,7 @@ class viewSQLDB():
             None"""
         results = self.database.executeSQL(f'''
                                         SELECT * 
-                                        FROM crustacean;
+                                        FROM Crustacean;
                                         ''')
         self.makeDBandPrint(results, columnsList=['creatureID','speed'])
 
@@ -194,7 +194,7 @@ class viewSQLDB():
             worldID: The ID of the world"""
         results = self.database.executeSQL(f'''
                                         SELECT * 
-                                        FROM world 
+                                        FROM World 
                                         WHERE worldID = {worldID};
                                         ''')
         self.makeDBandPrint(results, columnsList=['worldID','name','color','rating','fruit','season','weather','timeOfDay'])
@@ -204,7 +204,7 @@ class viewSQLDB():
         """The Game Developer must be able to get a full list of players"""
         results = self.database.executeSQL(f'''
                                         SELECT * 
-                                        FROM player;
+                                        FROM Player;
                                         ''')
         self.makeDBandPrint(results, columnsList=['playerID','name','birthday','hairColor','eyeColor','isWorldRep'])
 
