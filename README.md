@@ -10,6 +10,7 @@
 *   In `Optional/dbConnector.py` please make sure that the info on lines 7 through 10 are correct for your device. **If you do not have a password for your SQL, comment out line 9** (for password). 
     *   Line 9 should be the only thing you need to change if you are like most users.
     *   If you get an access denied error when trying to run the program, then you did not set up your device's info properly. Please try again. Once set up properly, program will connect and run smoothly.
+        *   You may need to add a new user not named `root` and give it no password to get it to run. [See This Link](https://stackoverflow.com/a/53981513)
 
 ## Program Requirements
 * The user must have the following packages installed (or program will crash):
@@ -30,7 +31,7 @@
 *   `python3` is probably how you use `python` on your command line, if this is not the case, enter in your computer's python command to run `main.py`
     *   Ex: `python3 main.py`
 *   There is an on screen menu telling you what part of the program you are in and what options you can select. The options are numbers, just enter a valid number to pick an option.
-*   `INPUT` or `YOUR INPUT` is asking for a valid input from the user (what does the user want to see)
+*   `INPUT` or `YOUR INPUT` or `SELECTION` is asking for a valid input from the user (what does the user want to see)
 *   a valid `USAGE MESSAGE` will pop up with relevant information (including if an error occurs)
     *   If you don't see output, don't fret, it's working right.
 *   *PLEASE NOTE* The program is case sensitive. Please check your spelling and capitalization appropriately and any other syntax.
