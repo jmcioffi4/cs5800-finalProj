@@ -31,8 +31,8 @@
     *   Ex: `python3 main.py`
 *   There is an on screen menu telling you what part of the program you are in and what options you can select. The options are numbers, just enter a valid number to pick an option.
 *   `INPUT` or `YOUR INPUT` is asking for a valid input from the user (what does the user want to see)
-*   a valid `USAGE MESSAGE` will pop up with relevant information if an error occurs
-    *   If you don't see output, it's working right.
+*   a valid `USAGE MESSAGE` will pop up with relevant information (including if an error occurs)
+    *   If you don't see output, don't fret, it's working right.
 *   *PLEASE NOTE* The program is case sensitive. Please check your spelling and capitalization appropriately and any other syntax.
 *   **IMPORTANT:** when `INSERT`ing into a table, you may get errors due to needing to type in enums. Please refer to `SQL/create.sql` to see which tables have which enums.
 
