@@ -8,7 +8,7 @@ def showMainMenu() -> int:
     -------------------
     MAIN MENU
         1. PlayerView
-        2. DeveloperView (require a password)
+        2. DeveloperView (requires a password)
         3. Exit Program
     -------------------
     ''')    

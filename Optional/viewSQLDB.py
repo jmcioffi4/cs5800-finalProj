@@ -245,7 +245,7 @@ class viewSQLDB():
             FOR INTERNAL USE ONLY"""
         print(f'''\u001b[1;32;40m
             \n----------------
-            \n>> USAGE MESSGE << 
+            \n>> USAGE MESSAGE << 
             \n{message}
             \n----------------''')
 
@@ -266,16 +266,16 @@ class viewSQLDB():
     # viewDB must take one or two arguments, the first decides which function is called, and the second is used if the function requires an argument
     def viewDB(self, viewMode):
         if viewMode == "playerView":
-            mainDict = self.playerViewFunctions
-        elif viewMode == "developerView":
-            mainDict = self.developerViewFunctions
+            self.mainDict = self.playerViewFunctions
+        if viewMode == "developerView":
+            self.mainDict = self.developerViewFunctions
 
         while True:
             # Show the user help message
             print('''\u001b[1;32;40m
                 \n------------------------------------------------"
                 \n>> USAGE MESSAGE (VIEWING DATABASE) <<
-                \n* Use keyword 'exit' to exit to the main menu
+                \n* Use keyword 'exit' to exit to the previous menu
                 \n* Enter a function, or type 'help' for a list of functions in your view
                 \n* Input must be in the format '<functionName> [<argument>]'
                 \n------------------------------------------------\n''')
@@ -288,7 +288,7 @@ class viewSQLDB():
             
             # check the args
             try:
-                if user_input[0] in mainDict:
+                if user_input[0] in self.mainDict:
                     if (len(user_input)==1):
                         # Check if there's an argument needed
                         if self.mainDict[user_input[0]].__code__.co_argcount == 2:

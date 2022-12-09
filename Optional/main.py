@@ -28,8 +28,7 @@ def showDevView(database, viewDB):
         elif developerMenuInput == '4':
             # call viewSQLDB.py with viewMode = "developerView"
             viewDB.viewDB("developerView")
-            return # if user backs to main menu, restart with main menu
-        elif developerMenuInput == '5' or developerMenuInput == 'X':
+        elif developerMenuInput == '5':
             # go back a menu, show the main
             return
 
