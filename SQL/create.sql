@@ -157,7 +157,7 @@ CREATE TABLE IF NOT EXISTS HasStructure(
 worldID int NOT NULL,
 structureID int NOT NULL,
 CONSTRAINT fk_hasstructure_world FOREIGN KEY (worldID) REFERENCES World(worldID),
-CONSTRAINT fk_hasstructure_structure FOREIGN KEY (structureID) REFERENCES structure(structureID)
+CONSTRAINT fk_hasstructure_structure FOREIGN KEY (structureID) REFERENCES Structure(structureID)
 );
 
 CREATE TABLE IF NOT EXISTS HasCaught(
