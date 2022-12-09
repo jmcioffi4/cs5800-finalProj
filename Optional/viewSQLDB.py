@@ -281,6 +281,8 @@ class viewSQLDB():
 
             # Take input from user, split it into a list, and then assign it to a variable
             user_input = input("\u001b[13;31;40m YOUR INPUT: ").split()
+            if len(user_input) > 2:
+                self.usageMessage("!! Too Many Parameters Buddy !! ")
             
             # print a line for space
             print("") 
@@ -292,6 +294,8 @@ class viewSQLDB():
                         # Check if there's an argument needed
                         if self.mainDict[user_input[0]].__code__.co_argcount == 2:
                             self.usageMessage("!!Function requires an argument!!")
+                        elif self.mainDict[user_input[0]].__code__.co_argcount == 0:
+                            self.usageMessage("!! No Args for this Function !!")
                         else:
                            self.mainDict[user_input[0]]()
                     if (len(user_input) == 2):
