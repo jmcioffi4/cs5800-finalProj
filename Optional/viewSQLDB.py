@@ -277,7 +277,7 @@ class viewSQLDB():
                 \n>> USAGE MESSAGE (VIEWING DATABASE) <<
                 \n* Use keyword 'exit' to exit to the previous menu
                 \n* Enter a function, or type 'help' for a list of functions in your view
-                \n* Input must be in the format '<functionName> [<argument>]'
+                \n* Input must be in the format '<functionName> [<argument that is a singular INT>]'
                 \n------------------------------------------------\n''')
 
             # Take input from user, split it into a list, and then assign it to a variable
