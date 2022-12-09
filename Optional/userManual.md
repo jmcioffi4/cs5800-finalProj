@@ -120,7 +120,6 @@
                 devFullPlayerList
                 devWorldPlayers <int (worldID)>
                 usageMessage <String> (For internal use only)
-                makeDBandPrint (For internal use only, it will crash, don't try it.)
                 help
                 functionHelp <function>
             ```
