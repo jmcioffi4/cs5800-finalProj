@@ -20,8 +20,8 @@
             *   version `1.4.4` or higher
         *   `mysql` via `pip3 install mysql-connector-python` 
             *   version `8.0.31` or higher
-    *   **NOTE** Please use your computer's appropriate version of `pip` to insure installation goes correctly.
-*   *   This program was written using `Python 3.10.8`, please use that version of python or higher to ensure the program works properly for you.
+    *   **NOTE** Please use your computer's appropriate version of `pip` (or `python -m pip <commands>`) to insure installation goes correctly.
+*   This program was written using `Python 3.10.8`, please use that version of python or higher to ensure the program works properly for you.
 
 ## The Entry Point to the Program
 *   The entry point to the program is `main.py` located in `Optional/`
