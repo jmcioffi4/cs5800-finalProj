@@ -2,7 +2,7 @@
 
 ## Main Menu
 *   The main menu will look like this:
-    *   '''
+    *   ```
         -------------------
         MAIN MENU
             1. PlayerView
@@ -11,7 +11,7 @@
         -------------------
 
         SELECTION: 
-        '''
+        ```
 *   `SELECTION` is asking for which menu option you want. Respond with 
     *   `1` to go the Player View Menu
     *   `2` to go to the Developer View Menu
@@ -20,7 +20,7 @@
 
 ## Player View Menu
 *   The player view menu will look like this:
-    *   '''
+    *   ```
         -------------------
         PLAYER VIEW MENU
             1. View specifics of the database
@@ -28,7 +28,7 @@
         -------------------
         
         SELECTION: 
-        '''
+        ```
 *   `SELECTION` is asking for which menu option you want. Respond with 
     *   `1` to go to the UI that lets you view the Database (in player view)
     *   `2` to return to the main menu
@@ -36,7 +36,7 @@
 ## Developer View Menu
 *   The developer view menu option (the first time it is accesseed) will ask for a password, enter `password`
 *   The developer view menu will look like this:
-    *   '''
+    *   ```
         -------------------
         DEVELOPER VIEW MENU
             1. Update a table
@@ -47,7 +47,7 @@
         -------------------
         
         SELECTION:
-        '''
+        ```
 *   `SELECTION` is asking for which menu option you want. Respond with 
     *   `1` to Update a table of your choice
     *   `2` to Delete a row from a table (based on attribute)
@@ -57,7 +57,7 @@
 
 ## Player View - UI for Viewing Database
 *   You will see the following usage message (it's there to help you):
-    *   '''
+    *   ```
         ------------------------------------------------"
                         
         >> USAGE MESSAGE (VIEWING DATABASE) <<
@@ -71,11 +71,11 @@
         ------------------------------------------------
 
         YOUR INPUT:
-        '''
+        ```
 *   `YOUR INPUT` is asking what function (with the parameter if it needs it) you want to run
     *   Exit to the previous menu by entering `exit`
     *   Available Functions (via typing `help`):
-        *   '''
+        *   ```
             List of functions:
                 playerInventory <int (playerID)>
                 playerVillagers <int (playerID)>
@@ -85,12 +85,12 @@
                 playerListOfPlayers <int (playerID)>
                 help
                 functionHelp <function>
-            '''
+            ```
     *   You will see a usage message if you did not give a proper parameter
 
 ## Developer View - UI for Viewing Database
 *   You will see the following usage message (it's there to help you):
-    *   '''
+    *   ```
         ------------------------------------------------"
                         
         >> USAGE MESSAGE (VIEWING DATABASE) <<
@@ -104,11 +104,11 @@
         ------------------------------------------------
 
         YOUR INPUT:
-        '''
+        ```
 *   `YOUR INPUT` is asking what function (with the parameter if it needs it) you want to run
     *   Exit to the previous menu by entering `exit`
     *   Available Functions (via typing `help`):
-        *   '''
+        *   ```
             List of functions:
                 devPlayerInventory <int (playerID)>
                 devVillagers 
@@ -124,7 +124,7 @@
                 makeDBandPrint
                 help
                 functionHelp <function>
-            '''
+            ```
     *   You will see a usage message if you did not give a proper parameter
 
 ## Developer View - INSERT, UPDATE, and DELETE options
