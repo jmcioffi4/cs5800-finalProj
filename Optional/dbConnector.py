@@ -22,7 +22,6 @@ class dbConnector():
 
     # FOR MODIFYING THE DATABASE
     def INSERT_SQL(self, table, values):
-        # values = values.split(" ")
         """INSERT INTO {table} {values};"""
         try:
             sql = f"INSERT INTO {table} VALUES ({values});"
