@@ -27,7 +27,7 @@ AND LivesOn.WorldID = HasDonated.WorldId
 AND Creature.CreatureID = HasDonated.creatureId;
 
 -- The Game Player must be able to see details of their world
-SELECT world.*
+SELECT World.*
 FROM World, LivesOn
 WHERE LivesOn.playerId = 2
 AND LivesOn.worldId = world.worldId;
@@ -37,7 +37,7 @@ SELECT playerID
 FROM LivesOn
 WHERE LivesOn.worldId = (SELECT worldId 
                          FROM LivesOn 
-                         WHERE playerId = 2) 
+                         WHERE playerId = 2);
 
 -- Game Developer
 -- The Game Developer must be able to see a list of any player’s inventory
