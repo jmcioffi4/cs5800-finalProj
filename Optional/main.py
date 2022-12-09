@@ -8,38 +8,38 @@ def showDevView(database, viewDB):
         if developerMenuInput == '1':
             # call to update a table
             tableToUpdate = input("\u001b[13;31;40mWhich table would you like to update? : ")
-            if tableToUpdate == "":
+            if tableToUpdate == "" or tableToUpdate == " ":
                 continue
             attribute_name = input("\u001b[13;31;40mWhich attribute did you want to update? : ")
-            if attribute_name == "":
+            if attribute_name == "" or attribute_name == " ":
                 continue
             new_value = input("\u001b[13;31;40mWhat do you want to change the attribtue_value to? : ")
-            if new_value == "":
+            if new_value == "" or new_value == " ":
                 continue
             old_value = input("\u001b[13;31;40mWhat was the old or current value of attribute_value? : ")
-            if old_value == "":
+            if old_value == "" or old_value == " ":
                 continue
             database.UPDATE_SQL(tableToUpdate, attribute_name, new_value, old_value)
         elif developerMenuInput == '2':
             # call to delete a row from a table
             tableToDelete = input("\u001b[13;31;40mFrom which table did you want to delete? : ")
-            if tableToUpdate == "":
+            if tableToUpdate == "" or tableToUpdate == " ":
                 continue
             attribute_name = input("\u001b[13;31;40mSelect table attribute value to search by: ")
-            if attribute_name == "":
+            if attribute_name == "" or attribute_name == " ":
                 continue
             value = input("\u001b[13;31;40mDelete all entries with what attribute value (specifically)? : ")
-            if value == "":
+            if value == "" or value == " ":
                 continue
             database.DELETE_SQL(tableToDelete, attribute_name, value)
 
         elif developerMenuInput == '3':
             # call to insert into a table
             table = input("\u001b[13;31;40mWhat table did you want to insert into? : ")
-            if table == "":
+            if table == "" or table == " ":
                 continue
             value = input("\u001b[13;31;40mwhat value (or values) did you want to insert into that table? (Ex: primaryKEY, INT, 'STRING') (NOTE: must be separated by commas, strings in single quotes) : ")
-            if value == "":
+            if value == "" or value == " ":
                 continue
             database.INSERT_SQL(table, value)
 
