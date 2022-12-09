@@ -9,9 +9,10 @@
     *   If these files are not ran first, then the program may not output any data.
 *   In `Optional/dbConnector.py` please make sure that the info on lines 7 through 10 are correct for your device. **If you do not have a password for your SQL, comment out line 9** (for password). 
     *   Line 9 should be the only thing you need to change if you are like most users.
+    *   If you get an access denied error when trying to run the program, then you did not set up your device's info properly. Please try again. Once set up properly, program will connect and run smoothly.
 
 ## Program Requirements
-* The user must have the following packages installed:
+* The user must have the following packages installed (or program will crash):
     *   Run `pip install -r requirements.txt` OR install the follow manually:
         *   `tabulate` via `pip3 install tabulate` 
             *   version `0.9.0` or higher
@@ -20,7 +21,7 @@
         *   `mysql` via `pip3 install mysql-connector-python` 
             *   version `8.0.31` or higher
     *   **NOTE** Please use your computer's appropriate version of `pip` to insure installation goes correctly.
-*   This program was written using `Python 3.10.8`, please use that version of python or higher to ensure the program works properly for you.
+*   *   This program was written using `Python 3.10.8`, please use that version of python or higher to ensure the program works properly for you.
 
 ## The Entry Point to the Program
 *   The entry point to the program is `main.py` located in `Optional/`
