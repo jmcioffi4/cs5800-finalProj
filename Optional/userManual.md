@@ -134,11 +134,29 @@
     *   On screen prompts will take input for the variables it needs
     *   Enter dates like this: `'YYYY-MM-DD'`
     *   *NOTE* For sub-entity tables, you must insert on the parent before that child table
+    *   Example:
+        *   ```
+            What table did you want to insert into? : Player
+            What value (or values) did you want to insert into that table? (Ex: primaryKEY, INT, 'STRING') (NOTE: must be separated by commas, strings in single quotes) : 44, 'jackjack', '1969-04-20', 'pink', 'hazel', 1
+            ```
 *   `UPDATE`
     *   The code runs the following SQL code: `UPDATE {table} SET {attribute_name} = {new_value} WHERE {attribute_name} = {old_value};`
         *   there is another version for any strings passed, don't worry it works.
     *   On screen prompts will take input for the variables it needs
+    *   Example:
+        *   ```
+            Which table would you like to update? : Tool
+            Which attribute did you want to update? : type
+            What do you want to change the attribtue_value to? : pole
+            What was the old or current value of attribute_value? : shovel
+            ```
 *   `DELETE`
     *   The code runs the following SQL code: `DELETE FROM {table} WHERE {attribute_name} = {value};`
         *   there is another version for any strings passed, don't worry it works.
     *   On screen prompts will take input for the variables it needs
+    *   Example:
+        *   ```
+            From which table did you want to delete? : Tool
+            Select table attribute value to search by: color
+            Delete all entries with what attribute value (specifically)? : green
+            ```
