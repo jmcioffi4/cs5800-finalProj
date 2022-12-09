@@ -30,7 +30,7 @@ AND Creature.CreatureID = HasDonated.creatureId;
 SELECT World.*
 FROM World, LivesOn
 WHERE LivesOn.playerID = 2
-AND LivesOn.worldId = world.worldID;
+AND LivesOn.worldId = World.worldID;
 
 -- The Game Player must be able to get a list of players that live on their world
 SELECT playerID
