@@ -28,7 +28,6 @@ class viewSQLDB():
             "devFullPlayerList" : self.devFullPlayerList,
             "devWorldPlayers": self.devWorldPlayers,
             "usageMessage" : self.usageMessage,
-            "makeDBandPrint" : self.makeDBandPrint,
             "help": self.help,
             "functionHelp": self.functionHelp,
         }
